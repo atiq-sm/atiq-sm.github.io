@@ -1,13 +1,33 @@
+import { motion } from 'framer-motion';
 import { site } from '../data/site.js';
+
+const EASE = [0.22, 1, 0.36, 1];
+
+const grid = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const card = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+};
 
 export default function Projects() {
   return (
     <section id="projects" className="section">
       <p className="section-title">Projects</p>
-      <div className="projects-grid">
+      <motion.div
+        className="projects-grid"
+        variants={grid}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {site.projects.map((project) => (
-          <a
+          <motion.a
             key={project.title}
+            variants={card}
             className="project-card"
             href={project.href}
             target="_blank"
@@ -24,9 +44,9 @@ export default function Projects() {
                 ))}
               </ul>
             )}
-          </a>
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

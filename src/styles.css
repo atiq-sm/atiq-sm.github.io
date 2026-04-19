@@ -1,10 +1,10 @@
 :root {
-  --bg: #fafaf7;
-  --surface: #ffffff;
-  --text: #1a1a1a;
-  --text-muted: #575757;
-  --border: #e6e3dc;
-  --accent: #1f5aa8;
+  --bg: #f5f4ee;
+  --surface: #fbfaf5;
+  --text: #1a1a19;
+  --text-muted: #6b6a66;
+  --border: #e4e1d6;
+  --accent: #c15f3c;
   --accent-contrast: #ffffff;
   --radius: 10px;
   --max-width: 880px;
@@ -14,19 +14,21 @@
   --space-4: 2.5rem;
   --space-5: 4rem;
   --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Helvetica Neue', Arial, sans-serif;
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif:
+    'Fraunces', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141414;
-    --surface: #1c1c1c;
-    --text: #f0efeb;
-    --text-muted: #a7a7a7;
-    --border: #2c2c2c;
-    --accent: #7aa7e0;
-    --accent-contrast: #0b0b0b;
+    --bg: #1a1916;
+    --surface: #23221e;
+    --text: #f1efe7;
+    --text-muted: #a8a49a;
+    --border: #32302a;
+    --accent: #e0825e;
+    --accent-contrast: #1a1916;
   }
 }
 
@@ -42,6 +44,16 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -49,6 +61,8 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'cv11';
 }
 
 a {
@@ -63,8 +77,12 @@ a:hover {
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
   margin: 0 0 var(--space-2);
+  font-variation-settings: 'opsz' 96;
 }
 
 p {
@@ -99,14 +117,17 @@ p {
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.025em;
   margin-bottom: var(--space-2);
 }
 
 .hero p {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   max-width: 36rem;
+  line-height: 1.5;
 }
 
 .button {
@@ -149,7 +170,9 @@ p {
 }
 
 .project-card h3 {
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-variation-settings: 'opsz' 36;
   margin-bottom: 0.35rem;
 }
 
