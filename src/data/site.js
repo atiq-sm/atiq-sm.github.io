@@ -1,5 +1,5 @@
 // Single source of truth for portfolio content.
-// TODO: tagline, about, linkedin, and email still need real values.
+// TODO: tagline, about, linkedin, email, and experience still need real values.
 
 export const site = {
   name: 'Atiq Mohammed',
@@ -9,6 +9,34 @@ export const site = {
   about:
     'A short paragraph about you: your background, what you work on, ' +
     'and what you care about. Two or three sentences is plenty.',
+  // TODO: swap in what you're actually working on / learning right now,
+  // and bump `updatedAt` whenever you refresh this.
+  now: {
+    text: 'Currently building out this portfolio and prepping the next round of MR POCUS features.',
+    updatedAt: '2026-04-20',
+  },
+  // TODO: replace each entry with real roles, or trim/extend the list.
+  experience: [
+    {
+      company: 'Company Name',
+      role: 'Your Role',
+      period: '20XX — Present',
+      location: 'City, State',
+      bullets: [
+        'Accomplishment or responsibility #1.',
+        'Accomplishment or responsibility #2.',
+      ],
+    },
+    {
+      company: 'Previous Company',
+      role: 'Previous Role',
+      period: '20XX — 20XX',
+      location: 'City, State',
+      bullets: [
+        'Accomplishment or responsibility #1.',
+      ],
+    },
+  ],
   links: {
     github: 'https://github.com/atiq-sm',
     // TODO: replace with your LinkedIn URL.
@@ -50,6 +78,7 @@ export const site = {
       description:
         'This site — a Vite + React portfolio with live GitHub repo metadata, animated scroll reveals, and a tuned type + color system.',
       href: 'https://github.com/atiq-sm/new-profile',
+      liveHref: 'https://atiq-sm.github.io/new-profile/',
       tags: ['React', 'Vite', 'Framer Motion'],
     },
   ],

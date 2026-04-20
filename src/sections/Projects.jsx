@@ -26,15 +26,21 @@ export default function Projects() {
         viewport={{ once: true, amount: 0.2 }}
       >
         {site.projects.map((project) => (
-          <motion.a
+          <motion.article
             key={project.title}
             variants={card}
             className="project-card"
-            href={project.href}
-            target="_blank"
-            rel="noreferrer noopener"
           >
-            <h3>{project.title}</h3>
+            <h3>
+              <a
+                className="project-card-link"
+                href={project.href}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {project.title}
+              </a>
+            </h3>
             <p>{project.description}</p>
             <RepoMeta href={project.href} />
             {project.tags?.length > 0 && (
@@ -46,7 +52,17 @@ export default function Projects() {
                 ))}
               </ul>
             )}
-          </motion.a>
+            {project.liveHref && (
+              <a
+                className="project-card-live"
+                href={project.liveHref}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Live site ↗
+              </a>
+            )}
+          </motion.article>
         ))}
       </motion.div>
     </section>
