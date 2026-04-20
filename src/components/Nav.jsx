@@ -36,6 +36,9 @@ export default function Nav() {
             <li>
               <ThemeToggle />
             </li>
+            <li className="cmdk-trigger-hint" aria-hidden="true">
+              <kbd>⌘</kbd><kbd>K</kbd>
+            </li>
           </ul>
         </nav>
       </div>

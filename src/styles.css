@@ -6,6 +6,10 @@
   --border: #e4e1d6;
   --accent: #c15f3c;
   --accent-contrast: #ffffff;
+  --accent-glow: rgba(193, 95, 60, 0.12);
+  /* view-transition origin (set by JS) */
+  --vt-x: 50%;
+  --vt-y: 50%;
   --radius: 10px;
   --max-width: 880px;
   --space-1: 0.5rem;
@@ -29,6 +33,7 @@
     --border: #32302a;
     --accent: #e0825e;
     --accent-contrast: #1a1916;
+    --accent-glow: rgba(224, 130, 94, 0.14);
   }
 }
 
@@ -41,6 +46,7 @@
   --border: #e4e1d6;
   --accent: #c15f3c;
   --accent-contrast: #ffffff;
+  --accent-glow: rgba(193, 95, 60, 0.12);
 }
 
 :root[data-theme='dark'] {
@@ -51,6 +57,7 @@
   --border: #32302a;
   --accent: #e0825e;
   --accent-contrast: #1a1916;
+  --accent-glow: rgba(224, 130, 94, 0.14);
 }
 
 *,
@@ -216,51 +223,6 @@ p {
   color: var(--text);
   margin: 0;
   line-height: 1.5;
-}
-
-/* GitHub stats */
-.gh-stats {
-  margin-top: var(--space-3);
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--border);
-}
-
-.gh-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-  gap: var(--space-2);
-  margin: 0 0 var(--space-1);
-}
-
-.gh-stat {
-  margin: 0;
-}
-
-.gh-stat dt {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.gh-stat dd {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-variation-settings: 'opsz' 36;
-  color: var(--text);
-  margin: 0.15rem 0 0;
-  line-height: 1;
-}
-
-.gh-stats-langs {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin: var(--space-2) 0 0;
-}
-
-.gh-stats-langs-label {
-  color: var(--text);
-  font-weight: 500;
 }
 
 /* Experience timeline */
@@ -603,4 +565,198 @@ button:focus-visible,
 .repo-meta-sep {
   opacity: 0.5;
   margin: 0 0.1rem;
+}
+
+/* ─── Spotlight on project cards ──────────────────────────────────────────── */
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: radial-gradient(
+    240px circle at var(--sx, -999px) var(--sy, -999px),
+    var(--accent-glow),
+    transparent 70%
+  );
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+/* ─── View Transitions (circular reveal on theme toggle) ──────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-new(root) {
+    animation: vt-reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes vt-reveal {
+    from {
+      clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+    }
+    to {
+      clip-path: circle(200% at var(--vt-x, 50%) var(--vt-y, 50%));
+    }
+  }
+}
+
+/* ─── Command palette ─────────────────────────────────────────────────────── */
+
+/* cmdk renders a <dialog> — reset its defaults */
+.cmdk-dialog[open] {
+  all: unset;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 14vh;
+}
+
+/* translucent backdrop */
+.cmdk-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* the floating panel */
+.cmdk-panel {
+  position: relative;
+  z-index: 1;
+  width: min(540px, calc(100vw - 2rem));
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  animation: cmdk-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cmdk-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cmdk-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.cmdk-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  outline: none;
+}
+
+.cmdk-input::placeholder {
+  color: var(--text-muted);
+}
+
+.cmdk-list {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 0.4rem 0;
+}
+
+.cmdk-empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* cmdk group heading */
+[cmdk-group-heading] {
+  padding: 0.5rem 1rem 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+[cmdk-item] {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.93rem;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.1s ease;
+  user-select: none;
+}
+
+[cmdk-item][aria-selected='true'],
+[cmdk-item]:hover {
+  background: var(--bg);
+  color: var(--accent);
+}
+
+.cmdk-icon {
+  width: 1.1rem;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+[cmdk-item][aria-selected='true'] .cmdk-icon,
+[cmdk-item]:hover .cmdk-icon {
+  color: var(--accent);
+}
+
+.cmdk-hint {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Kbd trigger hint visible in nav (optional, shown next to theme toggle) */
+.cmdk-trigger-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.cmdk-trigger-hint kbd {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  padding: 0.1rem 0.35rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+@media (max-width: 520px) {
+  .cmdk-trigger-hint {
+    display: none;
+  }
 }

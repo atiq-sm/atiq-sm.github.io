@@ -1,4 +1,5 @@
-import { useTheme } from '../hooks/useTheme.js';
+import { useRef } from 'react';
+import { useThemeCtx } from '../contexts/ThemeContext.js';
 
 const LABELS = {
   light: 'Light theme — click for dark',
@@ -45,12 +46,14 @@ function Icon({ mode }) {
 }
 
 export default function ThemeToggle() {
-  const { mode, cycle } = useTheme();
+  const { mode, cycleWithTransition } = useThemeCtx();
+  const ref = useRef(null);
   return (
     <button
+      ref={ref}
       type="button"
       className="theme-toggle"
-      onClick={cycle}
+      onClick={() => cycleWithTransition(ref.current)}
       aria-label={LABELS[mode]}
       title={LABELS[mode]}
     >

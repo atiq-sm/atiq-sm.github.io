@@ -14,6 +14,18 @@ const card = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
 
+function handleSpotlightMove(e) {
+  const el = e.currentTarget;
+  const r = el.getBoundingClientRect();
+  el.style.setProperty('--sx', `${e.clientX - r.left}px`);
+  el.style.setProperty('--sy', `${e.clientY - r.top}px`);
+}
+
+function handleSpotlightLeave(e) {
+  e.currentTarget.style.setProperty('--sx', '-999px');
+  e.currentTarget.style.setProperty('--sy', '-999px');
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="section">
@@ -30,6 +42,8 @@ export default function Projects() {
             key={project.title}
             variants={card}
             className="project-card"
+            onMouseMove={handleSpotlightMove}
+            onMouseLeave={handleSpotlightLeave}
           >
             <h3>
               <a
