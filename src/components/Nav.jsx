@@ -2,7 +2,7 @@ import { site } from '../data/site.js';
 import { useActiveSection } from '../hooks/useActiveSection.js';
 import ThemeToggle from './ThemeToggle.jsx';
 
-const SECTIONS = ['about', 'projects', 'contact'];
+const SECTIONS = ['about', 'experience', 'projects', 'contact'];
 
 export default function Nav() {
   const active = useActiveSection(SECTIONS);
@@ -23,6 +23,9 @@ export default function Nav() {
           <ul className="nav-links">
             <li>
               <a {...linkProps('about')}>About</a>
+            </li>
+            <li>
+              <a {...linkProps('experience')}>Experience</a>
             </li>
             <li>
               <a {...linkProps('projects')}>Projects</a>

@@ -169,6 +169,181 @@ p {
   opacity: 0.95;
 }
 
+/* About + Now card */
+.about-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-body > p:first-child {
+  margin-top: 0;
+}
+
+.now-card {
+  padding: var(--space-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.now-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+  font-weight: 500;
+}
+
+.now-updated {
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.now-text {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* GitHub stats */
+.gh-stats {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.gh-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: var(--space-2);
+  margin: 0 0 var(--space-1);
+}
+
+.gh-stat {
+  margin: 0;
+}
+
+.gh-stat dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.gh-stat dd {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-variation-settings: 'opsz' 36;
+  color: var(--text);
+  margin: 0.15rem 0 0;
+  line-height: 1;
+}
+
+.gh-stats-langs {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: var(--space-2) 0 0;
+}
+
+.gh-stats-langs-label {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Experience timeline */
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.experience-item {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(8rem, 10rem) 1fr;
+}
+
+@media (max-width: 640px) {
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+.experience-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.experience-period {
+  font-variant-numeric: tabular-nums;
+}
+
+.experience-location {
+  font-size: 0.8rem;
+}
+
+.experience-role {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-variation-settings: 'opsz' 36;
+  margin: 0 0 0.35rem;
+}
+
+.experience-sep {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.experience-company {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.experience-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.experience-bullets li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.experience-bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 0.25rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .projects-grid {
   display: grid;
   gap: var(--space-2);
@@ -176,19 +351,24 @@ p {
 }
 
 .project-card {
-  display: block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: var(--space-2);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: inherit;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .project-card:hover {
-  text-decoration: none;
   transform: translateY(-2px);
   border-color: var(--accent);
+  box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.18);
 }
 
 .project-card h3 {
@@ -198,10 +378,41 @@ p {
   margin-bottom: 0.35rem;
 }
 
+.project-card-link {
+  color: inherit;
+}
+
+.project-card-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.project-card-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius);
+}
+
 .project-card p {
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: var(--space-1);
+}
+
+.project-card-live {
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.project-card-live:hover {
+  text-decoration: underline;
 }
 
 .tag-list {
