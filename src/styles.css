@@ -238,6 +238,51 @@ p {
   font-size: 0.9rem;
 }
 
+/* Skip to content (visible on focus) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-2);
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+  text-decoration: none;
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* Focus rings — keyboard only */
+*:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+.project-card:focus-visible,
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.project-card:focus-visible {
+  border-radius: var(--radius);
+}
+
+.theme-toggle:focus-visible {
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
 /* Sticky nav */
 .nav {
   position: sticky;
@@ -290,6 +335,19 @@ p {
 .nav-links a:hover {
   color: var(--text);
   text-decoration: none;
+}
+
+.nav-links a.is-active {
+  color: var(--text);
+}
+
+.nav-links a.is-active::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 2px;
+  background: var(--accent);
+  border-radius: 1px;
 }
 
 @media (max-width: 520px) {

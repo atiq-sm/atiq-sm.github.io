@@ -1,0 +1,23 @@
+{
+  "name": "Atiq Mohammed — Portfolio",
+  "short_name": "Atiq",
+  "start_url": "/new-profile/",
+  "scope": "/new-profile/",
+  "display": "minimal-ui",
+  "background_color": "#f5f4ee",
+  "theme_color": "#c15f3c",
+  "icons": [
+    {
+      "src": "/new-profile/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/new-profile/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -27,9 +27,9 @@ export const site = {
     {
       title: 'Lending Club Analysis',
       description:
-        'ML on Lending Club loan data: predicting loan grades, surfacing the features that drive them, and exploring the shape of the dataset.',
+        'Supervised + unsupervised ML on 2014–2016 Lending Club loans: Gradient Boosting hit ~0.80 accuracy on grade prediction, while UMAP + HDBSCAN clustering revealed that loan grades don\'t map cleanly onto the natural borrower groupings in the data.',
       href: 'https://github.com/atiq-sm/Lending-Club-Analysis',
-      tags: ['Python', 'ML', 'Jupyter'],
+      tags: ['Python', 'ML', 'XGBoost', 'SHAP', 'UMAP'],
     },
     {
       title: 'ISBN Scanner',

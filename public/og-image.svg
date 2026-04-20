@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f4ee"/>
+  <rect x="0" y="0" width="12" height="630" fill="#c15f3c"/>
+  <g transform="translate(96, 0)">
+    <text x="0" y="300" font-family="serif" font-size="108" font-weight="500" fill="#1a1a19" letter-spacing="-2.7">Atiq Mohammed</text>
+    <text x="4" y="372" font-family="sans-serif" font-size="34" font-weight="400" fill="#6b6a66">Mixed reality, computer vision, and the projects in between.</text>
+    <line x1="4" y1="454" x2="92" y2="454" stroke="#c15f3c" stroke-width="3"/>
+    <text x="4" y="502" font-family="sans-serif" font-size="22" font-weight="600" fill="#1a1a19" letter-spacing="1.5">ATIQ-SM.GITHUB.IO/NEW-PROFILE</text>
+  </g>
+</svg>

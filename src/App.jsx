@@ -9,9 +9,10 @@ import Footer from './sections/Footer.jsx';
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
+      <a href="#main" className="skip-link">Skip to content</a>
       <div id="top" />
       <Nav />
-      <main className="container">
+      <main id="main" className="container">
         <Hero />
         <About />
         <Projects />
