@@ -1,6 +1,5 @@
 import Reveal from '../components/Reveal.jsx';
 import { site } from '../data/site.js';
-import GithubStats from '../components/GithubStats.jsx';
 
 function formatUpdated(iso) {
   const d = new Date(iso);
@@ -22,7 +21,6 @@ export default function About() {
         <div className="about-grid">
           <div className="about-body">
             <p>{site.about}</p>
-            <GithubStats username="atiq-sm" />
           </div>
           {site.now?.text && (
             <aside className="now-card" aria-label="What I'm working on now">

@@ -218,51 +218,6 @@ p {
   line-height: 1.5;
 }
 
-/* GitHub stats */
-.gh-stats {
-  margin-top: var(--space-3);
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--border);
-}
-
-.gh-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-  gap: var(--space-2);
-  margin: 0 0 var(--space-1);
-}
-
-.gh-stat {
-  margin: 0;
-}
-
-.gh-stat dt {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.gh-stat dd {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-variation-settings: 'opsz' 36;
-  color: var(--text);
-  margin: 0.15rem 0 0;
-  line-height: 1;
-}
-
-.gh-stats-langs {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin: var(--space-2) 0 0;
-}
-
-.gh-stats-langs-label {
-  color: var(--text);
-  font-weight: 500;
-}
-
 /* Experience timeline */
 .experience-list {
   list-style: none;
