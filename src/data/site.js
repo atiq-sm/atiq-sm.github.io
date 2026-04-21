@@ -127,8 +127,8 @@ export const site = {
       title: 'Portfolio Site',
       description:
         'This site — Vite + React with live GitHub repo metadata, Framer Motion scroll reveals, command palette (⌘K), and a tuned type + color system with light/dark/system theme switching.',
-      href: 'https://github.com/atiq-sm/new-profile',
-      liveHref: 'https://atiq-sm.github.io/new-profile/',
+      href: 'https://github.com/atiq-sm/atiq-sm.github.io',
+      liveHref: 'https://atiq-sm.github.io/',
       tags: ['React', 'Vite', 'Framer Motion'],
     },
   ],
