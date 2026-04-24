@@ -15,18 +15,22 @@ export default function App() {
   return (
     <ThemeContext.Provider value={theme}>
       <MotionConfig reducedMotion="user">
-        <a href="#main" className="skip-link">Skip to content</a>
-        <div id="top" />
-        <Nav />
-        <CommandPalette />
-        <main id="main" className="container">
-          <Hero />
-          <About />
-          <Experience />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
+        <div className="page-shell">
+          <div className="page-aurora page-aurora-one" aria-hidden="true" />
+          <div className="page-aurora page-aurora-two" aria-hidden="true" />
+          <a href="#main" className="skip-link">Skip to content</a>
+          <div id="top" />
+          <Nav />
+          <CommandPalette />
+          <main id="main" className="page-main container">
+            <Hero />
+            <About />
+            <Experience />
+            <Projects />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
       </MotionConfig>
     </ThemeContext.Provider>
   );

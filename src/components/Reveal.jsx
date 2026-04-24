@@ -9,6 +9,7 @@ export default function Reveal({
   duration = 0.7,
   className,
   as = 'div',
+  ...props
 }) {
   const MotionTag = motion[as];
   return (
@@ -18,6 +19,7 @@ export default function Reveal({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration, delay, ease: EASE }}
+      {...props}
     >
       {children}
     </MotionTag>

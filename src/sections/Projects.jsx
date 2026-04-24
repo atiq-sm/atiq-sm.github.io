@@ -27,17 +27,88 @@ function handleSpotlightLeave(e) {
 }
 
 export default function Projects() {
+  const [featured, ...rest] = site.projects;
+
   return (
-    <section id="projects" className="section">
-      <p className="section-title">Projects</p>
+    <section id="projects" className="section projects-section">
+      <div className="section-header">
+        <p className="section-title">Selected Work</p>
+        <p className="section-intro">
+          Systems work across mixed reality, machine learning, and tools built to
+          operate under real constraints.
+        </p>
+      </div>
+      {featured && (
+        <motion.article
+          className="project-feature"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
+          <div className="project-feature-copy">
+            <p className="project-kicker">Featured project</p>
+            <h3 className="project-feature-title">
+              <a
+                className="project-card-link"
+                href={featured.href}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {featured.title}
+              </a>
+            </h3>
+            <p className="project-feature-description">{featured.description}</p>
+            <RepoMeta href={featured.href} />
+            {featured.tags?.length > 0 && (
+              <ul className="tag-list">
+                {featured.tags.map((tag) => (
+                  <li key={tag} className="tag">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="project-feature-side">
+            <div className="project-feature-panel">
+              <p className="project-feature-panel-label">Outcome</p>
+              <p className="project-feature-panel-text">
+                Medical simulation delivered in a live clinical context with a
+                focus on responsiveness, clarity, and believable spatial feedback.
+              </p>
+            </div>
+            <div className="project-feature-links">
+              <a
+                className="button"
+                href={featured.href}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                View repository
+              </a>
+              {featured.liveHref && (
+                <a
+                  className="button button-ghost"
+                  href={featured.liveHref}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Live site
+                </a>
+              )}
+            </div>
+          </div>
+        </motion.article>
+      )}
       <motion.div
         className="projects-grid"
         variants={grid}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.12 }}
       >
-        {site.projects.map((project) => (
+        {rest.map((project) => (
           <motion.article
             key={project.title}
             variants={card}
@@ -45,16 +116,19 @@ export default function Projects() {
             onMouseMove={handleSpotlightMove}
             onMouseLeave={handleSpotlightLeave}
           >
-            <h3>
-              <a
-                className="project-card-link"
-                href={project.href}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                {project.title}
-              </a>
-            </h3>
+            <div className="project-card-head">
+              <p className="project-kicker">Project</p>
+              <h3>
+                <a
+                  className="project-card-link"
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {project.title}
+                </a>
+              </h3>
+            </div>
             <p>{project.description}</p>
             <RepoMeta href={project.href} />
             {project.tags?.length > 0 && (
@@ -66,16 +140,26 @@ export default function Projects() {
                 ))}
               </ul>
             )}
-            {project.liveHref && (
+            <div className="project-card-links">
               <a
                 className="project-card-live"
-                href={project.liveHref}
+                href={project.href}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                Live site ↗
+                Repository ↗
               </a>
-            )}
+              {project.liveHref && (
+                <a
+                  className="project-card-live"
+                  href={project.liveHref}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Live ↗
+                </a>
+              )}
+            </div>
           </motion.article>
         ))}
       </motion.div>

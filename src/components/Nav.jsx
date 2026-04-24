@@ -9,15 +9,19 @@ export default function Nav() {
 
   const linkProps = (id) => ({
     href: `#${id}`,
-    className: active === id ? 'is-active' : undefined,
+    className: active === id ? 'nav-link is-active' : 'nav-link',
     'aria-current': active === id ? 'location' : undefined,
   });
 
   return (
     <header className="nav">
       <div className="nav-inner">
-        <a className="nav-brand" href="#top">
-          {site.name}
+        <a className="nav-brand" href="#top" aria-label={`${site.name} home`}>
+          <span className="nav-brand-mark" aria-hidden="true">A</span>
+          <span className="nav-brand-copy">
+            <span className="nav-brand-name">{site.name}</span>
+            <span className="nav-brand-subtitle">XR developer · CS researcher</span>
+          </span>
         </a>
         <nav aria-label="Primary">
           <ul className="nav-links">
@@ -33,10 +37,11 @@ export default function Nav() {
             <li>
               <a {...linkProps('contact')}>Contact</a>
             </li>
-            <li>
+            <li className="nav-theme-item">
               <ThemeToggle />
             </li>
             <li className="cmdk-trigger-hint" aria-hidden="true">
+              <span>Command menu</span>
               <kbd>⌘</kbd><kbd>K</kbd>
             </li>
           </ul>
