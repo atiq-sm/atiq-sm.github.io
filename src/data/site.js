@@ -93,6 +93,13 @@ export const site = {
       tags: ['Python', 'XGBoost', 'SHAP', 'UMAP', 'HDBSCAN', 'Llama 3'],
     },
     {
+      title: 'Voice RAG Assistant',
+      description:
+        'Fully local, voice-enabled RAG system: microphone → Whisper STT → ChromaDB retrieval → cross-encoder reranking → neighbor-chunk expansion → Ollama LLM → Kokoro TTS → speaker output. Two-stage retrieval with smart query routing (map-reduce summaries for broad queries), inline citations stripped before playback, and a Gradio web UI.',
+      href: 'https://github.com/atiq-sm/voice-rag',
+      tags: ['Python', 'Whisper', 'ChromaDB', 'Ollama', 'RAG', 'Gradio', 'TTS'],
+    },
+    {
       title: 'Decentralized Crowdfunding Platform',
       description:
         'End-to-end Ethereum dApp with upgradeable proxy pattern, re-entrancy guards, and RBAC in Solidity — 25% gas cost reduction and 100% test coverage across 1,000+ Ganache transactions. React frontend with Hardhat local chain.',
