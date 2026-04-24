@@ -4,8 +4,8 @@
   "start_url": "/new-profile/",
   "scope": "/new-profile/",
   "display": "minimal-ui",
-  "background_color": "#f5f4ee",
-  "theme_color": "#c15f3c",
+  "background_color": "#0a0b0d",
+  "theme_color": "#0a0b0d",
   "icons": [
     {
       "src": "/new-profile/favicon.svg",
