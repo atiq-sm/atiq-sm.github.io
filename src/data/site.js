@@ -131,6 +131,27 @@ export const site = {
       tags: ['Python', 'Reinforcement Learning', 'REST APIs', 'Multiprocessing'],
     },
     {
+      title: 'Bare-Metal Snake (Raspberry Pi 4)',
+      description:
+        'Fully playable Snake running directly on Raspberry Pi 4 hardware — no OS, ~9 KB kernel image. Custom first-fit heap allocator with block coalescing, doubly-linked list for body segments, 1080p framebuffer rendering, and UART input (WASD + VT100 arrows). Includes an autonomous AI mode that takes over when no terminal is connected.',
+      href: 'https://github.com/atiq-sm/baremetal-snake',
+      tags: ['C', 'AArch64 Assembly', 'Raspberry Pi', 'Bare Metal', 'Systems Programming'],
+    },
+    {
+      title: 'Ask My Screenshots',
+      description:
+        'Local-first semantic search for screenshot collections — no cloud, no privacy trade-offs. Indexes screenshots with three parallel signals: VLM captions (Ollama), OCR (Tesseract/PaddleOCR), and semantic embeddings stored in sqlite-vec. Hybrid BM25 + vector retrieval, a Textual TUI, and a watchdog for continuous folder monitoring.',
+      href: 'https://github.com/atiq-sm/ask-my-screenshots',
+      tags: ['Python', 'Ollama', 'SQLite', 'OCR', 'Vector Search', 'Textual', 'Local AI'],
+    },
+    {
+      title: 'Journey Builder',
+      description:
+        'React app for editing prefill mappings on a DAG of forms (Avantos front-end challenge). Dual state management — React Query owns the server-side graph (fetched once, staleTime: Infinity) while useReducer manages client-side prefill state keyed per node. Pluggable data-source registry lets new mapping types integrate with zero changes to the picker, panel, or reducer.',
+      href: 'https://github.com/atiq-sm/journeyBuilder',
+      tags: ['TypeScript', 'React', 'React Query', 'DAG', 'Vitest'],
+    },
+    {
       title: 'Portfolio Site',
       description:
         'This site — Vite + React with live GitHub repo metadata, Framer Motion scroll reveals, command palette (⌘K), and a tuned type + color system with light/dark/system theme switching.',
