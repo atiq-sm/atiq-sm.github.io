@@ -74,9 +74,16 @@ export const site = {
     {
       title: 'MR POCUS Training System',
       description:
-        "Shipped mixed-reality pediatric cardiac ultrasound simulator for Meta Quest 3 — evaluated in a controlled study (n=32, 15/16 learners recommend) and deployed at Barbara Bush Children's Hospital. Custom 6DOF ArUco tracking at sub-100ms latency, 90Hz passthrough rendering, and VideoPlayer-to-RenderTexture pipeline for multi-pathology content.",
+        "Shipped mixed-reality pediatric cardiac ultrasound simulator for Meta Quest 3 — evaluated in a controlled study (n=32, 15/16 learners recommend) and deployed at Barbara Bush Children's Hospital. Custom 6DOF ArUco tracking at sub-100ms latency, 90Hz passthrough rendering, and a VideoPlayer-to-RenderTexture pipeline for multi-pathology content.",
       href: 'https://github.com/atiq-sm/MR-POCUS',
       tags: ['Unity 6', 'C#', 'Meta Quest 3', 'OpenCV', 'ArUco', 'Passthrough MR', 'Medical'],
+    },
+    {
+      title: 'Cosmic Knockout',
+      description:
+        'Browser platform fighter on a custom 60fps fixed-timestep physics engine — percentage-based damage and knockback, six original fighters with distinct movesets, and nine behavior-tree AI tiers. Socket.IO rooms add join-by-code multiplayer with input-delay netcode, and all 28 sound effects plus three music tracks are synthesized live via the Web Audio API — no audio files.',
+      href: 'https://github.com/atiq-sm/cosmic-knockout',
+      tags: ['Next.js 16', 'React 19', 'TypeScript', 'Canvas 2D', 'Socket.IO', 'Web Audio'],
     },
     {
       title: 'Mixed Reality Zombie Shooter',
@@ -86,11 +93,12 @@ export const site = {
       tags: ['Unity 6', 'C#', 'Meta XR SDK', 'MRUK', 'NavMesh', 'Meta Quest 3'],
     },
     {
-      title: 'Financial Analysis with Explainable AI',
+      title: 'Fraction Kitchen',
       description:
-        "ML pipeline on Lending Club loans achieving 90% ROC-AUC; UMAP + HDBSCAN clustering reveals natural borrower segments that don't map to assigned grades. Locally-run Llama 3 generates LIME/SHAP-backed plain-language explanations for every prediction.",
-      href: 'https://github.com/atiq-sm/Lending-Club-Analysis',
-      tags: ['Python', 'XGBoost', 'SHAP', 'UMAP', 'HDBSCAN', 'Llama 3'],
+        'Educational fraction game on Phaser 3 + TypeScript: a juice-bar quick-play mode plus a Slay-the-Spire-style roguelike with shops, chests, and boss battles. A Phaser-free TypeScript math core (216 Vitest tests) accepts any mathematically-equivalent answer, difficulty adapts across five tiers, and WebSocket multiplayer shares an RNG seed so both players face identical scenarios.',
+      href: 'https://github.com/atiq-sm/Fraction-Kitchen',
+      liveHref: 'https://atiq-sm.github.io/Fraction-Kitchen/',
+      tags: ['TypeScript', 'Phaser 3', 'Vite', 'Vitest', 'WebSocket'],
     },
     {
       title: 'Voice RAG Assistant',
@@ -100,12 +108,39 @@ export const site = {
       tags: ['Python', 'Whisper', 'ChromaDB', 'Ollama', 'RAG', 'Gradio', 'TTS'],
     },
     {
-      title: 'Decentralized Crowdfunding Platform',
+      title: 'NPC Dialogue Engine',
       description:
-        'End-to-end Ethereum dApp with upgradeable proxy pattern, re-entrancy guards, and RBAC in Solidity — 25% gas cost reduction and 100% test coverage across 1,000+ Ganache transactions. React frontend with Hardhat local chain.',
-      // TODO: replace with the exact repo URL once confirmed.
-      href: 'https://github.com/atiq-sm',
-      tags: ['Solidity', 'React', 'Hardhat', 'Ethereum', 'RBAC'],
+        'Backend-first NPC conversation system: a LangGraph pipeline — intent classification → lore retrieval → assembly → generation → validation/repair → effect extraction — served over FastAPI and driven by a local Ollama model. RAG grounds replies in world lore, SQLite checkpoints persist per-thread state, and conservative game-effect extraction keeps the model from inventing state changes.',
+      href: 'https://github.com/atiq-sm/NPC-AI',
+      tags: ['Python', 'FastAPI', 'LangGraph', 'Ollama', 'RAG', 'SQLite'],
+    },
+    {
+      title: 'Financial Analysis with Explainable AI',
+      description:
+        "ML pipeline on Lending Club loans achieving 90% ROC-AUC; UMAP + HDBSCAN clustering reveals natural borrower segments that don't map to assigned grades. Locally-run Llama 3 generates LIME/SHAP-backed plain-language explanations for every prediction.",
+      href: 'https://github.com/atiq-sm/Lending-Club-Analysis',
+      tags: ['Python', 'XGBoost', 'SHAP', 'UMAP', 'HDBSCAN', 'Llama 3'],
+    },
+    {
+      title: 'Ask My Screenshots',
+      description:
+        'Local-first semantic search for screenshot collections — no cloud, no privacy trade-offs. Indexes screenshots with three parallel signals: VLM captions (Ollama), OCR (Tesseract/PaddleOCR), and semantic embeddings stored in sqlite-vec. Hybrid BM25 + vector retrieval, a Textual TUI, and a watchdog for continuous folder monitoring.',
+      href: 'https://github.com/atiq-sm/ask-my-screenshots',
+      tags: ['Python', 'Ollama', 'SQLite', 'OCR', 'Vector Search', 'Textual', 'Local AI'],
+    },
+    {
+      title: 'Bare-Metal Snake (Raspberry Pi 4)',
+      description:
+        'Fully playable Snake running directly on Raspberry Pi 4 hardware — no OS, ~9 KB kernel image. Custom first-fit heap allocator with block coalescing, doubly-linked list for body segments, 1080p framebuffer rendering, and UART input (WASD + VT100 arrows). Includes an autonomous AI mode that takes over when no terminal is connected.',
+      href: 'https://github.com/atiq-sm/baremetal-snake',
+      tags: ['C', 'AArch64 Assembly', 'Raspberry Pi', 'Bare Metal', 'Systems Programming'],
+    },
+    {
+      title: 'Journey Builder',
+      description:
+        'React app for editing prefill mappings on a DAG of forms (Avantos front-end challenge). Dual state management — React Query owns the server-side graph (fetched once, staleTime: Infinity) while useReducer manages client-side prefill state keyed per node. Pluggable data-source registry lets new mapping types integrate with zero changes to the picker, panel, or reducer.',
+      href: 'https://github.com/atiq-sm/journeyBuilder',
+      tags: ['TypeScript', 'React', 'React Query', 'DAG', 'Vitest'],
     },
     {
       title: 'ISBN Scanner',
@@ -113,6 +148,14 @@ export const site = {
         'Desktop book-identification app: Sobel/Scharr gradient operators, morphological ops, and contour analysis locate barcodes under varied lighting and angles; pyzbar decodes and OpenLibrary fills in titles and authors.',
       href: 'https://github.com/atiq-sm/CS-5330-Final-Project',
       tags: ['Python', 'OpenCV', 'Computer Vision', 'Tkinter', 'pyzbar'],
+    },
+    {
+      title: 'Decentralized Crowdfunding Platform',
+      description:
+        'End-to-end Ethereum dApp with upgradeable proxy pattern, re-entrancy guards, and RBAC in Solidity — 25% gas cost reduction and 100% test coverage across 1,000+ Ganache transactions. React frontend with Hardhat local chain.',
+      // TODO: replace with the exact repo URL once confirmed.
+      href: 'https://github.com/atiq-sm',
+      tags: ['Solidity', 'React', 'Hardhat', 'Ethereum', 'RBAC'],
     },
     {
       title: 'Multiplayer Network Game',
@@ -131,30 +174,9 @@ export const site = {
       tags: ['Python', 'Reinforcement Learning', 'REST APIs', 'Multiprocessing'],
     },
     {
-      title: 'Bare-Metal Snake (Raspberry Pi 4)',
-      description:
-        'Fully playable Snake running directly on Raspberry Pi 4 hardware — no OS, ~9 KB kernel image. Custom first-fit heap allocator with block coalescing, doubly-linked list for body segments, 1080p framebuffer rendering, and UART input (WASD + VT100 arrows). Includes an autonomous AI mode that takes over when no terminal is connected.',
-      href: 'https://github.com/atiq-sm/baremetal-snake',
-      tags: ['C', 'AArch64 Assembly', 'Raspberry Pi', 'Bare Metal', 'Systems Programming'],
-    },
-    {
-      title: 'Ask My Screenshots',
-      description:
-        'Local-first semantic search for screenshot collections — no cloud, no privacy trade-offs. Indexes screenshots with three parallel signals: VLM captions (Ollama), OCR (Tesseract/PaddleOCR), and semantic embeddings stored in sqlite-vec. Hybrid BM25 + vector retrieval, a Textual TUI, and a watchdog for continuous folder monitoring.',
-      href: 'https://github.com/atiq-sm/ask-my-screenshots',
-      tags: ['Python', 'Ollama', 'SQLite', 'OCR', 'Vector Search', 'Textual', 'Local AI'],
-    },
-    {
-      title: 'Journey Builder',
-      description:
-        'React app for editing prefill mappings on a DAG of forms (Avantos front-end challenge). Dual state management — React Query owns the server-side graph (fetched once, staleTime: Infinity) while useReducer manages client-side prefill state keyed per node. Pluggable data-source registry lets new mapping types integrate with zero changes to the picker, panel, or reducer.',
-      href: 'https://github.com/atiq-sm/journeyBuilder',
-      tags: ['TypeScript', 'React', 'React Query', 'DAG', 'Vitest'],
-    },
-    {
       title: 'Portfolio Site',
       description:
-        'This site — Vite + React with live GitHub repo metadata, Framer Motion scroll reveals, command palette (⌘K), and a tuned type + color system with light/dark/system theme switching.',
+        'This site — Vite + React with live GitHub repo metadata, calm scroll reveals, a command palette (⌘K), and a monospace-driven type + color system with light / dark / system theme switching.',
       href: 'https://github.com/atiq-sm/atiq-sm.github.io',
       liveHref: 'https://atiq-sm.github.io/',
       tags: ['React', 'Vite', 'Framer Motion'],

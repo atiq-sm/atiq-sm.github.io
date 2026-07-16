@@ -16,49 +16,50 @@ export default function About() {
 
   return (
     <Reveal as="section" id="about" className="section section-about">
-      <div className="section-shell">
-        <div className="section-heading">
-          <p className="section-title">About</p>
-          <h2 className="section-kicker">
-            Research-led engineering with a bias toward real-time systems that
-            have to hold up in the world.
+      <div className="section-head">
+        <span className="section-head-index">01</span>
+        <span className="section-head-label">about</span>
+        <span className="section-head-rule" aria-hidden="true" />
+      </div>
+
+      <div className="about-layout">
+        <div className="about-body">
+          <h2 className="section-title">
+            Research-led engineering, biased toward real-time systems that have
+            to hold up in the world.
           </h2>
+          <p className="about-copy" style={{ marginTop: '1.4rem' }}>
+            {site.about}
+          </p>
+          <p className="about-caption">
+            The through-line is deliberate software: technically rigorous under
+            the hood, calm and useful on the surface.
+          </p>
         </div>
 
-        <div className="about-layout">
-          <div className="about-body">
-            <p className="about-copy">{site.about}</p>
-            <p className="about-caption">
-              The through-line is deliberate software: technically rigorous
-              under the hood, calm and useful on the surface.
+        <aside className="about-sidebar">
+          {site.now?.text && (
+            <div className="note-card" aria-label="What I'm working on now">
+              <p className="note-card-label">
+                <span>now</span>
+                {nowUpdated && (
+                  <span className="note-card-stamp">{nowUpdated}</span>
+                )}
+              </p>
+              <p className="note-card-text">{site.now.text}</p>
+            </div>
+          )}
+
+          <div className="note-card">
+            <p className="note-card-label">
+              <span>approach</span>
+            </p>
+            <p className="note-card-text">
+              I care most about work where systems thinking, interface craft,
+              and measurable usefulness all matter at the same time.
             </p>
           </div>
-
-          <aside className="about-sidebar">
-            {site.now?.text && (
-              <div className="editorial-card now-card" aria-label="What I'm working on now">
-                <p className="now-label">
-                  Now
-                  {nowUpdated && (
-                    <>
-                      {' '}
-                      <span className="now-updated">· {nowUpdated}</span>
-                    </>
-                  )}
-                </p>
-                <p className="now-text">{site.now.text}</p>
-              </div>
-            )}
-
-            <div className="editorial-card about-note">
-              <p className="about-note-label">Approach</p>
-              <p className="about-note-text">
-                I care most about work where systems thinking, interface craft,
-                and measurable usefulness all matter at the same time.
-              </p>
-            </div>
-          </aside>
-        </div>
+        </aside>
       </div>
     </Reveal>
   );

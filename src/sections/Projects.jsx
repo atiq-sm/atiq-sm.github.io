@@ -6,48 +6,36 @@ const EASE = [0.22, 1, 0.36, 1];
 
 const grid = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.05 } },
 };
 
 const card = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
-
-function handleSpotlightMove(e) {
-  const el = e.currentTarget;
-  const r = el.getBoundingClientRect();
-  el.style.setProperty('--sx', `${e.clientX - r.left}px`);
-  el.style.setProperty('--sy', `${e.clientY - r.top}px`);
-}
-
-function handleSpotlightLeave(e) {
-  e.currentTarget.style.setProperty('--sx', '-999px');
-  e.currentTarget.style.setProperty('--sy', '-999px');
-}
 
 export default function Projects() {
   const [featured, ...rest] = site.projects;
 
   return (
     <section id="projects" className="section projects-section">
-      <div className="section-header">
-        <p className="section-title">Selected Work</p>
-        <p className="section-intro">
-          Systems work across mixed reality, machine learning, and tools built to
-          operate under real constraints.
-        </p>
+      <div className="section-head">
+        <span className="section-head-index">03</span>
+        <span className="section-head-label">selected work</span>
+        <span className="section-head-rule" aria-hidden="true" />
+        <span className="section-head-note">{site.projects.length} projects</span>
       </div>
+
       {featured && (
         <motion.article
           className="project-feature"
-          initial={{ opacity: 0, y: 22 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          transition={{ duration: 0.5, ease: EASE }}
         >
           <div className="project-feature-copy">
-            <p className="project-kicker">Featured project</p>
+            <p className="project-feature-tag">featured</p>
             <h3 className="project-feature-title">
               <a
                 className="project-card-link"
@@ -72,10 +60,10 @@ export default function Projects() {
           </div>
           <div className="project-feature-side">
             <div className="project-feature-panel">
-              <p className="project-feature-panel-label">Outcome</p>
+              <p className="label label-accent">outcome</p>
               <p className="project-feature-panel-text">
-                Medical simulation delivered in a live clinical context with a
-                focus on responsiveness, clarity, and believable spatial feedback.
+                Medical simulation delivered in a live clinical context — tuned
+                for responsiveness, clarity, and believable spatial feedback.
               </p>
             </div>
             <div className="project-feature-links">
@@ -85,7 +73,7 @@ export default function Projects() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                View repository
+                repository ↗
               </a>
               {featured.liveHref && (
                 <a
@@ -94,30 +82,31 @@ export default function Projects() {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  Live site
+                  live ↗
                 </a>
               )}
             </div>
           </div>
         </motion.article>
       )}
+
       <motion.div
         className="projects-grid"
         variants={grid}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.12 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
-        {rest.map((project) => (
+        {rest.map((project, i) => (
           <motion.article
             key={project.title}
             variants={card}
             className="project-card"
-            onMouseMove={handleSpotlightMove}
-            onMouseLeave={handleSpotlightLeave}
           >
             <div className="project-card-head">
-              <p className="project-kicker">Project</p>
+              <span className="project-index">
+                {String(i + 1).padStart(2, '0')}
+              </span>
               <h3>
                 <a
                   className="project-card-link"
@@ -140,23 +129,23 @@ export default function Projects() {
                 ))}
               </ul>
             )}
-            <div className="project-card-links">
+            <div className="project-card-foot">
               <a
-                className="project-card-live"
+                className="project-card-link-out"
                 href={project.href}
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                Repository ↗
+                repository ↗
               </a>
               {project.liveHref && (
                 <a
-                  className="project-card-live"
+                  className="project-card-link-out"
                   href={project.liveHref}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  Live ↗
+                  live ↗
                 </a>
               )}
             </div>

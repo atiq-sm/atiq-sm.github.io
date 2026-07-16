@@ -21,8 +21,13 @@ export default function CommandPalette() {
         setOpen((o) => !o);
       }
     };
+    const openHandler = () => setOpen(true);
     document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
+    window.addEventListener('cmdk:open', openHandler);
+    return () => {
+      document.removeEventListener('keydown', handler);
+      window.removeEventListener('cmdk:open', openHandler);
+    };
   }, []);
 
   function close() {
