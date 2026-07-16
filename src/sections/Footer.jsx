@@ -4,8 +4,15 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <p className="footer-signoff">Built to feel calm, precise, and unmistakably personal.</p>
-        <p className="footer-meta">© {new Date().getFullYear()} {site.name}</p>
+        <p className="footer-signoff">
+          Built with React + Vite. Type set in Inter &amp; JetBrains Mono.
+        </p>
+        <p className="footer-meta">
+          © {new Date().getFullYear()} {site.name} ·{' '}
+          <a className="footer-top" href="#top">
+            back to top ↑
+          </a>
+        </p>
       </div>
     </footer>
   );

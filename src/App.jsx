@@ -16,8 +16,6 @@ export default function App() {
     <ThemeContext.Provider value={theme}>
       <MotionConfig reducedMotion="user">
         <div className="page-shell">
-          <div className="page-aurora page-aurora-one" aria-hidden="true" />
-          <div className="page-aurora page-aurora-two" aria-hidden="true" />
           <a href="#main" className="skip-link">Skip to content</a>
           <div id="top" />
           <Nav />

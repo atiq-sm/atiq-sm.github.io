@@ -5,8 +5,8 @@ const EASE = [0.22, 1, 0.36, 1];
 export default function Reveal({
   children,
   delay = 0,
-  y = 14,
-  duration = 0.7,
+  y = 8,
+  duration = 0.5,
   className,
   as = 'div',
   ...props
@@ -17,7 +17,7 @@ export default function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration, delay, ease: EASE }}
       {...props}
     >

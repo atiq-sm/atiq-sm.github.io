@@ -31,17 +31,27 @@ The workflow in `.github/workflows/deploy.yml` builds and publishes on every pus
 2. Under **Build and deployment**, set **Source** to **GitHub Actions**
 3. Push to `main` (or run the workflow manually from the Actions tab)
 
-The site will be live at `https://atiq-sm.github.io/new-profile/`.
+The site is live at `https://atiq-sm.github.io/`. This is a user site, so `base` in
+`vite.config.js` is `'/'` and all asset paths are root-relative.
 
-> If you rename this repo to `atiq-sm.github.io` (a user site), change `base` in `vite.config.js` from `'/new-profile/'` to `'/'`.
+## Regenerating share assets
+
+`public/og-image.png` and `public/apple-touch-icon.png` are rasterized from the
+matching SVGs and committed to the repo (the deploy workflow does not regenerate
+them). After editing `public/og-image.svg` or `public/favicon.svg`, run:
+
+```bash
+npm run generate:og
+```
 
 ## Project structure
 
 ```
 src/
   data/site.js        # content — edit here
-  sections/           # Hero, About, Projects, Contact, Footer
+  sections/           # Hero, About, Experience, Projects, Contact, Footer
+  components/          # Nav, CommandPalette, ThemeToggle, Reveal, RepoMeta
   App.jsx             # composes the sections
   main.jsx            # React entry
-  styles.css          # theme tokens + layout
+  styles.css          # design tokens (technical / mono) + layout
 ```
