@@ -26,17 +26,17 @@ export default function Nav() {
           <span className="nav-brand-mark" aria-hidden="true">A</span>
           <span className="nav-brand-copy">
             <span className="nav-brand-name">{brandName(site.name)}</span>
-            <span className="nav-brand-subtitle">/ xr · cs</span>
+            <span className="nav-brand-subtitle">/ XR · CS</span>
           </span>
         </a>
 
         <div className="nav-cluster">
           <nav aria-label="Primary">
             <ul className="nav-links">
-              <li><a {...linkProps('about')}>about</a></li>
-              <li><a {...linkProps('experience')}>experience</a></li>
-              <li><a {...linkProps('projects')}>projects</a></li>
-              <li><a {...linkProps('contact')}>contact</a></li>
+              <li><a {...linkProps('about')}>About</a></li>
+              <li><a {...linkProps('experience')}>Experience</a></li>
+              <li><a {...linkProps('projects')}>Projects</a></li>
+              <li><a {...linkProps('contact')}>Contact</a></li>
             </ul>
           </nav>
 
@@ -48,7 +48,7 @@ export default function Nav() {
             onClick={() => window.dispatchEvent(new CustomEvent('cmdk:open'))}
             aria-label="Open command menu"
           >
-            <span className="cmdk-trigger-label">menu</span>
+            <span className="cmdk-trigger-label">Menu</span>
             <kbd>⌘K</kbd>
           </button>
 

@@ -173,8 +173,7 @@ svg {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-faint);
 }
 
@@ -445,8 +444,7 @@ input:focus-visible,
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 
@@ -592,8 +590,7 @@ input:focus-visible,
   color: var(--text-faint);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .spec-dots {
@@ -624,8 +621,7 @@ input:focus-visible,
 
 .spec-key {
   color: var(--text-faint);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   font-size: 0.7rem;
   padding-top: 0.1rem;
 }
@@ -695,8 +691,7 @@ input:focus-visible,
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 
@@ -704,7 +699,6 @@ input:focus-visible,
   color: var(--text-faint);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
-  text-transform: none;
 }
 
 .note-card-text {
@@ -830,8 +824,7 @@ input:focus-visible,
   gap: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--accent);
 }
 
@@ -1046,8 +1039,7 @@ input:focus-visible,
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-faint);
 }
 
@@ -1190,8 +1182,7 @@ input:focus-visible,
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 [cmdk-item] {

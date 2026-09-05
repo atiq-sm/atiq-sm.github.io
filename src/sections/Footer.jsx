@@ -10,7 +10,7 @@ export default function Footer() {
         <p className="footer-meta">
           © {new Date().getFullYear()} {site.name} ·{' '}
           <a className="footer-top" href="#top">
-            back to top ↑
+            Back to top ↑
           </a>
         </p>
       </div>
