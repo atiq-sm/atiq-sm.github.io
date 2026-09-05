@@ -7,7 +7,7 @@ export default function Contact() {
     <Reveal as="section" id="contact" className="section section-contact">
       <div className="section-head">
         <span className="section-head-index">04</span>
-        <span className="section-head-label">contact</span>
+        <span className="section-head-label">Contact</span>
         <span className="section-head-rule" aria-hidden="true" />
       </div>
 
@@ -25,13 +25,13 @@ export default function Contact() {
         <ul className="contact-list">
           {email && (
             <li className="contact-item">
-              <span className="contact-item-label">email</span>
+              <span className="contact-item-label">Email</span>
               <a href={`mailto:${email}`}>{email}</a>
             </li>
           )}
           {github && (
             <li className="contact-item">
-              <span className="contact-item-label">github</span>
+              <span className="contact-item-label">GitHub</span>
               <a href={github} target="_blank" rel="noreferrer noopener">
                 {github.replace(/^https?:\/\//, '')}
               </a>
@@ -39,7 +39,7 @@ export default function Contact() {
           )}
           {linkedin && (
             <li className="contact-item">
-              <span className="contact-item-label">linkedin</span>
+              <span className="contact-item-label">LinkedIn</span>
               <a href={linkedin} target="_blank" rel="noreferrer noopener">
                 {linkedin.replace(/^https?:\/\//, '')}
               </a>

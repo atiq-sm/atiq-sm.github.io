@@ -21,7 +21,7 @@ export default function Projects() {
     <section id="projects" className="section projects-section">
       <div className="section-head">
         <span className="section-head-index">03</span>
-        <span className="section-head-label">selected work</span>
+        <span className="section-head-label">Selected work</span>
         <span className="section-head-rule" aria-hidden="true" />
         <span className="section-head-note">{site.projects.length} projects</span>
       </div>
@@ -35,7 +35,7 @@ export default function Projects() {
           transition={{ duration: 0.5, ease: EASE }}
         >
           <div className="project-feature-copy">
-            <p className="project-feature-tag">featured</p>
+            <p className="project-feature-tag">Featured</p>
             <h3 className="project-feature-title">
               <a
                 className="project-card-link"
@@ -60,7 +60,7 @@ export default function Projects() {
           </div>
           <div className="project-feature-side">
             <div className="project-feature-panel">
-              <p className="label label-accent">outcome</p>
+              <p className="label label-accent">Outcome</p>
               <p className="project-feature-panel-text">
                 Medical simulation delivered in a live clinical context — tuned
                 for responsiveness, clarity, and believable spatial feedback.
@@ -73,7 +73,7 @@ export default function Projects() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                repository ↗
+                Repository ↗
               </a>
               {featured.liveHref && (
                 <a
@@ -82,7 +82,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  live ↗
+                  Live ↗
                 </a>
               )}
             </div>
@@ -136,7 +136,7 @@ export default function Projects() {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                repository ↗
+                Repository ↗
               </a>
               {project.liveHref && (
                 <a
@@ -145,7 +145,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  live ↗
+                  Live ↗
                 </a>
               )}
             </div>

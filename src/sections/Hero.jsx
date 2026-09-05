@@ -15,13 +15,13 @@ const item = {
 
 const SPEC = [
   {
-    key: 'status',
+    key: 'Status',
     live: true,
     value: 'Shipping the next MR POCUS pathology module',
   },
-  { key: 'focus', value: 'Clinical XR · real-time rendering · 6DOF tracking' },
-  { key: 'location', value: 'Portland, ME' },
-  { key: 'school', value: 'MS CS · Northeastern (4.0) · May 2026' },
+  { key: 'Focus', value: 'Clinical XR · real-time rendering · 6DOF tracking' },
+  { key: 'Location', value: 'Portland, ME' },
+  { key: 'School', value: 'MS CS · Northeastern (4.0) · May 2026' },
 ];
 
 export default function Hero() {
@@ -40,7 +40,7 @@ export default function Hero() {
       <div className="hero-grid">
         <div className="hero-copy">
           <motion.p variants={item} className="eyebrow">
-            mixed reality · computer vision · applied research
+            Mixed reality · computer vision · applied research
           </motion.p>
           <motion.h1 variants={item} className="hero-title">
             <span>{firstName}</span>
@@ -51,10 +51,10 @@ export default function Hero() {
           </motion.p>
           <motion.div variants={item} className="hero-actions">
             <a className="button" href="#projects">
-              selected work
+              Selected work
             </a>
             <a className="button button-ghost" href="#contact">
-              get in touch
+              Get in touch
             </a>
           </motion.div>
         </div>
@@ -66,7 +66,7 @@ export default function Hero() {
               <span />
               <span />
             </span>
-            <span>profile</span>
+            <span>Profile</span>
           </div>
           {SPEC.map((row) => (
             <div className="spec-row" key={row.key}>

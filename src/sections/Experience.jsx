@@ -8,7 +8,7 @@ export default function Experience() {
     <Reveal as="section" id="experience" className="section section-experience">
       <div className="section-head">
         <span className="section-head-index">02</span>
-        <span className="section-head-label">experience</span>
+        <span className="section-head-label">Experience</span>
         <span className="section-head-rule" aria-hidden="true" />
       </div>
 

@@ -4,13 +4,13 @@ function formatRelative(iso) {
   const then = new Date(iso).getTime();
   if (Number.isNaN(then)) return null;
   const days = Math.max(0, Math.floor((Date.now() - then) / 86_400_000));
-  if (days === 0) return 'updated today';
-  if (days === 1) return 'updated yesterday';
-  if (days < 30) return `updated ${days}d ago`;
+  if (days === 0) return 'Updated today';
+  if (days === 1) return 'Updated yesterday';
+  if (days < 30) return `Updated ${days}d ago`;
   const months = Math.floor(days / 30);
-  if (months < 12) return `updated ${months}mo ago`;
+  if (months < 12) return `Updated ${months}mo ago`;
   const years = Math.floor(days / 365);
-  return `updated ${years}y ago`;
+  return `Updated ${years}y ago`;
 }
 
 export default function RepoMeta({ href }) {

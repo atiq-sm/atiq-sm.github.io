@@ -18,7 +18,7 @@ export default function About() {
     <Reveal as="section" id="about" className="section section-about">
       <div className="section-head">
         <span className="section-head-index">01</span>
-        <span className="section-head-label">about</span>
+        <span className="section-head-label">About</span>
         <span className="section-head-rule" aria-hidden="true" />
       </div>
 
@@ -41,7 +41,7 @@ export default function About() {
           {site.now?.text && (
             <div className="note-card" aria-label="What I'm working on now">
               <p className="note-card-label">
-                <span>now</span>
+                <span>Now</span>
                 {nowUpdated && (
                   <span className="note-card-stamp">{nowUpdated}</span>
                 )}
@@ -52,7 +52,7 @@ export default function About() {
 
           <div className="note-card">
             <p className="note-card-label">
-              <span>approach</span>
+              <span>Approach</span>
             </p>
             <p className="note-card-text">
               I care most about work where systems thinking, interface craft,
