@@ -879,6 +879,86 @@ section.block {
   margin-top: var(--s2);
 }
 
+/* ------------------------------------------------------------------ about: three beats, then credits */
+
+.prose p {
+  max-width: 62ch;
+  margin: 0 0 1.1em;
+  color: var(--dim);
+}
+
+.prose p.big {
+  max-width: 40ch;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.prose .aside p,
+.prose > p:last-child {
+  margin: 0;
+}
+
+.prose .aside time {
+  color: var(--accent);
+}
+
+/* the story in three beats, one per four columns */
+.beats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+  margin-bottom: var(--s3);
+}
+
+.prose .beats p {
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .beats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .prose .beats p {
+    max-width: 40ch;
+  }
+}
+
+.credits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+  margin: 0;
+}
+
+.credits > div {
+  padding-top: var(--s2);
+  border-top: 1px solid var(--line);
+}
+
+.credits dt {
+  margin: 0 0 12px;
+  color: var(--dim);
+}
+
+.credits dd {
+  margin: 0;
+  color: var(--dim);
+}
+
+@media (max-width: 1000px) {
+  .credits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .credits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ------------------------------------------------------------------ timeline: one row per role on the page grid */
 
 .timeline {
@@ -924,6 +1004,52 @@ section.block {
   text-align: right;
 }
 
+/* with bullets, for the About page: the role reads larger and the text gets a column more */
+.timeline.detailed > li {
+  padding: var(--s3) 0;
+}
+
+.timeline.detailed h3 {
+  font-size: var(--fs-lead);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+.timeline.detailed .what {
+  grid-column: 4 / span 7;
+}
+
+.timeline.detailed .where {
+  grid-column: 11 / span 2;
+}
+
+.timeline .what ul {
+  margin: var(--s2) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--dim);
+}
+
+.timeline .what ul li {
+  position: relative;
+  max-width: 72ch;
+  padding-left: 18px;
+}
+
+.timeline .what ul li + li {
+  margin-top: 8px;
+}
+
+.timeline .what ul li::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--rule);
+}
+
 @media (max-width: 720px) {
   .timeline .period,
   .timeline .what,
@@ -932,8 +1058,14 @@ section.block {
     text-align: left;
   }
 
-  .timeline .what {
+  .timeline .what,
+  .timeline.detailed .what {
+    grid-column: 1 / -1;
     margin-top: 4px;
+  }
+
+  .timeline.detailed .where {
+    grid-column: 1 / -1;
   }
 }
 

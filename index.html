@@ -21,6 +21,14 @@
     <meta name="twitter:description" content="Portfolio of Atiq Mohammed — mixed reality, computer vision, and the projects in between." />
     <meta name="twitter:image" content="https://atiq-sm.github.io/og-image.png" />
 
+    <script>
+      // The old single-page anchors now live on their own pages.
+      (function () {
+        var to = { '#about': '/about/', '#projects': '/work/', '#experience': '/about/#experience' }[location.hash];
+        if (to) location.replace(to);
+      })();
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
