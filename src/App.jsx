@@ -1,35 +1,17 @@
-import { MotionConfig } from 'framer-motion';
-import { ThemeContext } from './contexts/ThemeContext.js';
-import { useTheme } from './hooks/useTheme.js';
-import Nav from './components/Nav.jsx';
-import CommandPalette from './components/CommandPalette.jsx';
-import Hero from './sections/Hero.jsx';
-import About from './sections/About.jsx';
-import Experience from './sections/Experience.jsx';
-import Projects from './sections/Projects.jsx';
-import Contact from './sections/Contact.jsx';
-import Footer from './sections/Footer.jsx';
+import Layout from './components/Layout.jsx';
+import Home from './pages/Home.jsx';
+import Work from './pages/Work.jsx';
+import About from './pages/About.jsx';
+import NotFound from './pages/NotFound.jsx';
 
-export default function App() {
-  const theme = useTheme();
+// One entry for every HTML file: each sets <body data-page> to a key here.
+export const PAGES = { home: Home, work: Work, about: About, notfound: NotFound };
+
+export default function App({ page }) {
+  const Page = PAGES[page] ?? NotFound;
   return (
-    <ThemeContext.Provider value={theme}>
-      <MotionConfig reducedMotion="user">
-        <div className="page-shell">
-          <a href="#main" className="skip-link">Skip to content</a>
-          <div id="top" />
-          <Nav />
-          <CommandPalette />
-          <main id="main" className="page-main container">
-            <Hero />
-            <About />
-            <Experience />
-            <Projects />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
-      </MotionConfig>
-    </ThemeContext.Provider>
+    <Layout page={page}>
+      <Page />
+    </Layout>
   );
 }

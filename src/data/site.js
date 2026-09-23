@@ -1,6 +1,19 @@
 export const site = {
   name: 'Atiq Sohail Mohammed',
   tagline: 'XR developer & CS researcher — building real-time immersive systems that ship.',
+  location: 'Portland, ME',
+  // The tag in the top bar; keep it short.
+  status: { label: 'Shipping MR POCUS', href: '/about/#now' },
+  // The homepage hero: the lede under the headline and the fine print beside it.
+  intro: {
+    lede:
+      "I'm Atiq Mohammed, an XR developer and CS researcher. I build real-time immersive " +
+      "systems, including a mixed-reality ultrasound trainer that's live at Barbara Bush " +
+      "Children's Hospital.",
+    fine:
+      'MS Computer Science at Northeastern University and XR researcher at the Roux Institute ' +
+      'with MaineHealth. Before that, full-stack AI at Aosenuma and data engineering at Capgemini.',
+  },
   about:
     'MS Computer Science student at Northeastern (4.0 GPA) and XR researcher at the Roux Institute, ' +
     "building a mixed-reality pediatric cardiac ultrasound simulator that's live at Barbara Bush " +
@@ -69,6 +82,7 @@ export const site = {
     // TODO: confirm your LinkedIn handle and swap in the real URL.
     linkedin: 'https://www.linkedin.com/in/atiq-sm/',
     email: 'mohammed.ati@northeastern.edu',
+    source: 'https://github.com/atiq-sm/atiq-sm.github.io',
   },
   projects: [
     {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atiq Mohammed — Portfolio</title>
     <meta name="description" content="Portfolio of Atiq Mohammed — mixed reality, computer vision, and the projects in between." />
+    <link rel="canonical" href="https://atiq-sm.github.io/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Atiq Mohammed" />
@@ -23,15 +24,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#f5f5f3" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#0c0c0c" />
 
     <script type="application/ld+json">
       {
@@ -44,20 +37,9 @@
         ]
       }
     </script>
-
-    <script>
-      (function () {
-        try {
-          var t = localStorage.getItem('theme');
-          if (t === 'light' || t === 'dark') {
-            document.documentElement.setAttribute('data-theme', t);
-          }
-        } catch (e) {}
-      })();
-    </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body data-page="home">
+    <div id="root"><!--app--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
