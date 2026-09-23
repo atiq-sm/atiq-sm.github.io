@@ -27,7 +27,7 @@ function trailingSlash() {
   };
 }
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react(), trailingSlash()],
   base: '/',
   appType: 'mpa',
@@ -36,6 +36,8 @@ export default defineConfig({
     __BUILD_YEAR__: JSON.stringify(new Date().getUTCFullYear()),
   },
   build: {
+    // The SSR build (scripts/prerender.mjs) only needs the render function.
+    copyPublicDir: !isSsrBuild,
     rollupOptions: {
       input: {
         home: page('./index.html'),
@@ -45,4 +47,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

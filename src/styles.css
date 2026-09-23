@@ -700,6 +700,19 @@ footer a:hover {
 
 /* ------------------------------------------------------------------ motion: none of it under reduced motion */
 
+/* page to page: the content crossfades, the sticky bar holds still */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+@media (min-width: 721px) {
+  .bar-top {
+    view-transition-name: bar;
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
