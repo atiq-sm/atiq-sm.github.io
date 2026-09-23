@@ -96,6 +96,11 @@ canvas {
   display: block;
 }
 
+/* the filter hides entries with the attribute; no component rule may undo it */
+[hidden] {
+  display: none !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -623,8 +628,23 @@ section.block {
   border-top: 1px solid var(--line);
 }
 
-.seam + section.block {
+.seam + section.block,
+.filter + section.block,
+.filter + section.block[hidden] + section.block {
   border-top: 0;
+}
+
+.label {
+  margin: 0;
+  color: var(--faint);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
 }
 
 .lead {
@@ -711,6 +731,152 @@ section.block {
 .viz.large {
   aspect-ratio: 16 / 9;
   margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ work: the filter bar, the case study, every entry */
+
+/* a full-width bar under the seam, like the reference's legend; it scrolls
+   sideways on a phone rather than wrapping the segments */
+.filter {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 10px var(--gut);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+
+.filter::-webkit-scrollbar {
+  display: none;
+}
+
+.seg {
+  display: inline-flex;
+  flex: none;
+  border: 1px solid var(--line);
+}
+
+.seg button {
+  border: 0;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.seg button + button {
+  border-left: 1px solid var(--line);
+}
+
+.seg button.on {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.seg button.on:hover {
+  color: var(--ink);
+}
+
+.count {
+  margin-left: 8px;
+  color: var(--faint);
+}
+
+.seg button.on .count {
+  color: inherit;
+  opacity: 0.6;
+}
+
+.filter + section.block {
+  padding-top: calc(var(--s3) + var(--s2));
+}
+
+.case .aside .repo-meta {
+  margin-top: -12px;
+}
+
+/* the case study: the illustration as a stage on eight columns, the facts as a feed on four */
+.stage {
+  align-items: start;
+  row-gap: var(--s3);
+}
+
+.stage > .viz {
+  grid-column: span 8;
+}
+
+.stage > .feed {
+  grid-column: span 4;
+}
+
+@media (max-width: 1000px) {
+  .stage > .viz,
+  .stage > .feed {
+    grid-column: 1 / -1;
+  }
+}
+
+.feed {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 1px solid var(--rule);
+}
+
+.feed > div + div {
+  margin-top: var(--s2);
+}
+
+.feed dt {
+  color: var(--faint);
+}
+
+.feed dd {
+  margin: 2px 0 0;
+}
+
+/* every other project: three across with column rules */
+.entries {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s4) var(--gap);
+}
+
+@media (max-width: 1100px) {
+  .entries {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .entries {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.entry {
+  padding-left: 14px;
+  border-left: 1px solid var(--rule);
+}
+
+.entry .label {
+  margin-bottom: 10px;
+}
+
+.num {
+  color: var(--accent);
+}
+
+.entry .description {
+  max-width: 62ch;
+  margin: 0 0 var(--s2);
+  color: var(--dim);
+}
+
+.entry .stack {
+  margin-bottom: 2px;
+}
+
+.entry .row {
+  margin-top: var(--s2);
 }
 
 /* ------------------------------------------------------------------ timeline: one row per role on the page grid */

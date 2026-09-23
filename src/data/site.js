@@ -114,11 +114,13 @@ export const site = {
       viz: 'pocus',
       summary:
         "Mixed-reality pediatric cardiac ultrasound trainer for Quest 3, live at Barbara Bush Children's Hospital.",
-      // The case study on /work/: label, value.
+      // The case study on /work/: its headline, then label/value pairs.
+      headline: "Mixed reality, live in a children's hospital.",
       facts: [
         ['Role', 'XR developer and student researcher, Roux Institute & MaineHealth'],
         ['Platform', 'Meta Quest 3 passthrough MR, Unity 6, C#'],
         ['Tracking', 'Custom 6DOF ArUco pipeline: sub-5 cm accuracy, sub-100 ms latency'],
+        ['Rendering', '90 Hz passthrough, with a VideoPlayer-to-RenderTexture pipeline for multi-pathology content'],
         ['Evaluation', 'Controlled study, n=32; 15/16 learners recommend it'],
         ['Deployed', "Barbara Bush Children's Hospital"],
         ['Outcome', 'Medical simulation delivered in a live clinical context, tuned for responsiveness, clarity and believable spatial feedback.'],
