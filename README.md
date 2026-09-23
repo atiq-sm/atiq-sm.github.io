@@ -19,7 +19,7 @@ npm run preview   # serve the production build locally
 | URL       | Source                 | What it holds                                                   |
 | --------- | ---------------------- | --------------------------------------------------------------- |
 | `/`       | `src/pages/Home.jsx`   | The overview: hero and stats, featured work, a timeline of roles |
-| `/work/`  | `src/pages/Work.jsx`   | Every project: the MR POCUS case study, a filter, all write-ups  |
+| `/work/`  | `src/pages/Work.jsx`   | Every project: the CardAlive and MR POCUS case studies, a filter, all write-ups |
 | `/about/` | `src/pages/About.jsx`  | Bio, what I'm working on now, full experience and education     |
 | 404       | `src/pages/NotFound.jsx` | GitHub Pages serves `dist/404.html` for unknown paths          |
 
@@ -47,8 +47,11 @@ Section headings ("Selected work.", "Now.") live in the page files. In
   shows the work roles, About shows both with their bullets
 - `projects`: each has a `category` (the filter on /work/), and optionally:
   - `featured: true` with a one-line `summary` to appear on the homepage
-  - `viz` to give it an animated illustration (`pocus`, `knockout`, `rag`, `snake`)
-  - `headline` and `facts` to make it the case study at the top of /work/
+  - `viz` to give it an animated illustration (`cardalive`, `pocus`, `knockout`,
+    `rag`, `snake`)
+  - `headline` and `facts` to give it a case study at the top of /work/ (every
+    project that has them gets one, in data order)
+  - `liveLabel` to name its live link (it reads "Live" otherwise)
   - `slug` to choose its anchor on /work/ (otherwise it comes from the title)
 
 The Repository button only appears when `href` points at a repository, so a

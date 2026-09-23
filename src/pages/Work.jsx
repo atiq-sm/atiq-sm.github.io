@@ -6,14 +6,14 @@ import CaseStudy from '../components/CaseStudy.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
 import ProjectFilter from '../components/ProjectFilter.jsx';
 
-// Every project: the one with case-study facts first and at full width, then
-// the rest in data order. Filtering hides entries rather than removing them,
+// Every project: those with case-study facts first and at full width, then
+// the rest, all in data order. Filtering hides entries rather than removing them,
 // so /work/#slug anchors always exist.
 export default function Work() {
   const [category, setCategory] = useState('all');
   const { projects } = site;
-  const flagship = projects.find((p) => p.facts?.length);
-  const rest = projects.filter((p) => p !== flagship);
+  const studies = projects.filter((p) => p.facts?.length);
+  const rest = projects.filter((p) => !studies.includes(p));
 
   const options = [{ key: 'all', label: 'All', count: projects.length }];
   for (const p of projects) {
@@ -52,7 +52,9 @@ export default function Work() {
         shown={projects.filter(isShown).length}
         onChange={setCategory}
       />
-      {flagship && <CaseStudy project={flagship} hidden={!isShown(flagship)} />}
+      {studies.map((project) => (
+        <CaseStudy key={project.title} project={project} hidden={!isShown(project)} />
+      ))}
       <Section className="entries-block" aria-label="All projects">
         <div className="entries">
           {rest.map((project) => (

@@ -4,7 +4,7 @@ import RepoMeta from './RepoMeta.jsx';
 import { ProjectLinks } from './ProjectCard.jsx';
 import { projectSlug } from '../lib/format.js';
 
-// The flagship project at full width: the illustration as a stage on eight
+// A case study at full width: the illustration as a stage on eight
 // columns, the facts as a feed on the other four.
 export default function CaseStudy({ project, hidden = false }) {
   return (
