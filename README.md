@@ -1,25 +1,92 @@
 # new-profile
 
-Personal portfolio site — built with Vite + React, deployed to GitHub Pages.
+Personal portfolio site — built with Vite + React, pre-rendered to static HTML at
+build time, and deployed to GitHub Pages.
 
-Live site (after first deploy): https://atiq-sm.github.io
+Live site: https://atiq-sm.github.io
 
 ## Quickstart
 
 ```bash
 npm install
 npm run dev       # local dev server on http://localhost:5173
-npm run build     # production build into dist/
-npm run preview   # preview the production build locally
+npm run build     # production build into dist/ (client, SSR, then pre-render)
+npm run preview   # serve the production build locally
 ```
+
+## Pages
+
+| URL       | Source                 | What it holds                                                   |
+| --------- | ---------------------- | --------------------------------------------------------------- |
+| `/`       | `src/pages/Home.jsx`   | The overview: hero and stats, featured work, a timeline of roles |
+| `/work/`  | `src/pages/Work.jsx`   | Every project: the MR POCUS case study, a filter, all write-ups  |
+| `/about/` | `src/pages/About.jsx`  | Bio, what I'm working on now, full experience and education     |
+| 404       | `src/pages/NotFound.jsx` | GitHub Pages serves `dist/404.html` for unknown paths          |
+
+Each page is its own HTML file (`index.html`, `work/index.html`,
+`about/index.html`, `404.html`) with its own title and share tags. All of them
+load `src/main.jsx`, which renders the page named by `<body data-page>`. Links
+between pages are always absolute (`/work/`, `/about/#experience`).
+
+Old single-page links keep working: `/#about`, `/#projects` and `/#experience`
+redirect to their new homes, and `/#contact` still lands on the contact band.
 
 ## Editing your content
 
-All text, links, and project entries live in one file:
+Everything the pages say about you lives in one file:
 
 - `src/data/site.js`
 
-Change your name, tagline, bio, social links, and project cards there. No other file needs to be touched for a content update.
+Section headings ("Selected work.", "Now.") live in the page files. In
+`site.js`:
+
+- `intro`, `stats`: the homepage hero's lede, fine print and four numbers
+- `status`: the short tag in the top bar
+- `about`, `now`, `focus`, `approach`, `location`: the About page
+- `experience`: each entry has a `kind`, `'work'` or `'education'`; the homepage
+  shows the work roles, About shows both with their bullets
+- `projects`: each has a `category` (the filter on /work/), and optionally:
+  - `featured: true` with a one-line `summary` to appear on the homepage
+  - `viz` to give it an animated illustration (`pocus`, `knockout`, `rag`, `snake`)
+  - `headline` and `facts` to make it the case study at the top of /work/
+  - `slug` to choose its anchor on /work/ (otherwise it comes from the title)
+
+The Repository button only appears when `href` points at a repository, so a
+project linked to your profile shows none until its URL is filled in.
+
+## How it is built
+
+`npm run build` runs three steps:
+
+1. `vite build`: the client bundle and the four HTML files, into `dist/`
+2. `vite build --ssr src/entry-server.jsx`: a render function, into the
+   git-ignored `dist-ssr/`
+3. `node scripts/prerender.mjs`: renders each page to HTML and writes it into
+   its file in `dist/`
+
+The browser then hydrates that markup, so every page paints before any
+JavaScript runs and reads fully without it. Keep render output deterministic
+(no `Date.now()`, `Math.random()` or `window` while rendering) so the
+pre-rendered page and the hydrated one agree; browser-only work belongs in
+`useEffect`.
+
+Live GitHub stats (language, stars, last push) come from one request to the
+GitHub API per visit, cached for 30 minutes in `sessionStorage`.
+
+## Illustrations
+
+The animated project illustrations are drawn in grayscale on a canvas and
+presented through an ordered (Bayer) dither in ink and lime:
+
+- `src/lib/dither.js`: the dither stage
+- `src/lib/ticker.js`: one animation loop, running only while an illustration
+  is on screen
+- `src/viz/*.js`: one scene each, a pure function of time drawn with the
+  pixel-snapped kit in `src/viz/kit.js`
+
+To add one, write a scene in `src/viz/`, register it in `src/viz/index.js`,
+and set that key as a project's `viz`. Visitors who prefer reduced motion see a
+single still frame.
 
 ## Deploying to GitHub Pages
 
@@ -44,14 +111,32 @@ them). After editing `public/og-image.svg` or `public/favicon.svg`, run:
 npm run generate:og
 ```
 
+The SVGs use generic font families; the script maps them to the fonts the site
+itself uses on your OS.
+
+## Design
+
+The design language (lime on ink, the 12-column grid, the type scale, the
+dithered seams and canvases) is adapted from the
+[Laya playground](https://brainfunctioncollapse.com/laya) by brain function
+collapse, used under the MIT License. See `THIRD_PARTY_NOTICES.md`.
+
 ## Project structure
 
 ```
+index.html, work/, about/, 404.html   # one HTML entry per page
 src/
   data/site.js        # content — edit here
-  sections/           # Hero, About, Experience, Projects, Contact, Footer
-  components/          # Nav, CommandPalette, ThemeToggle, Reveal, RepoMeta
-  App.jsx             # composes the sections
-  main.jsx            # React entry
-  styles.css          # design tokens (technical / mono) + layout
+  pages/              # Home, Work, About, NotFound
+  components/         # TopBar, Hero, Section, Band, Footer, ProjectCard, …
+  viz/                # the illustration scenes
+  lib/                # dither stage, animation ticker, formatters
+  hooks/              # useGithubRepo
+  App.jsx             # the page map and shared layout
+  main.jsx            # browser entry: hydrates the pre-rendered page
+  entry-server.jsx    # build-time render for scripts/prerender.mjs
+  styles.css          # the design system
+scripts/
+  prerender.mjs       # writes pre-rendered markup into dist/
+  generate-og.mjs     # rasterizes the share image and touch icon
 ```

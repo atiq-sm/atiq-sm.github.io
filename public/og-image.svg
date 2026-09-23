@@ -1,14 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0b0b0d"/>
-  <rect x="40" y="40" width="1120" height="550" rx="18" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+  <!-- Fonts are generic here; scripts/generate-og.mjs maps them to the site's stacks per OS. -->
+  <defs>
+    <!-- the site's seam, at twice its size so it survives being shown small -->
+    <pattern id="ink-dots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#c6f432"/>
+      <rect x="4" width="4" height="4" fill="#0c0c0c"/>
+    </pattern>
+    <pattern id="checker" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#0c0c0c"/>
+      <rect x="4" width="4" height="4" fill="#c6f432"/>
+      <rect y="4" width="4" height="4" fill="#c6f432"/>
+    </pattern>
+    <pattern id="lime-dots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#0c0c0c"/>
+      <rect x="4" width="4" height="4" fill="#c6f432"/>
+    </pattern>
+  </defs>
 
-  <text x="90" y="150" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="22" font-weight="500" letter-spacing="1" fill="#8fb4ff">// atiq mohammed · xr developer</text>
-  <text x="1110" y="150" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="20" letter-spacing="1" fill="#66666e">atiq-sm.github.io</text>
+  <rect width="1200" height="630" fill="#0c0c0c"/>
+  <rect width="1200" height="420" fill="#c6f432"/>
+  <rect y="420" width="1200" height="16" fill="url(#ink-dots)"/>
+  <rect y="436" width="1200" height="16" fill="url(#checker)"/>
+  <rect y="452" width="1200" height="16" fill="url(#lime-dots)"/>
 
-  <text x="86" y="322" font-family="'Inter','Liberation Sans',Arial,sans-serif" font-size="104" font-weight="700" letter-spacing="-4" fill="#ededee">Real-time systems</text>
-  <text x="86" y="432" font-family="'Inter','Liberation Sans',Arial,sans-serif" font-size="104" font-weight="700" letter-spacing="-4" fill="#ededee">that ship.</text>
-  <rect x="90" y="460" width="66" height="4" rx="2" fill="#8fb4ff"/>
+  <g transform="translate(64 56)">
+    <rect width="40" height="40" fill="#0c0c0c"/>
+    <path transform="scale(1.25)" d="M11 6h10v5H11zM6 11h5v15H6zM21 11h5v15h-5zM11 17h10v4H11z" fill="#c6f432"/>
+  </g>
+  <text x="122" y="86" font-family="sans-serif" font-size="30" font-weight="500" fill="#0c0c0c">Atiq Mohammed</text>
+  <text x="1136" y="84" text-anchor="end" font-family="monospace" font-size="19" letter-spacing="1.6" fill="#0c0c0c" fill-opacity="0.78">XR DEVELOPER · CS RESEARCHER</text>
 
-  <text x="90" y="518" font-family="'Inter','Liberation Sans',Arial,sans-serif" font-size="29" font-weight="400" fill="#a0a0a8">Mixed reality, computer vision, and the software in between.</text>
-  <text x="90" y="566" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="19" letter-spacing="2" fill="#66666e">UNITY · OPENCV · REACT · PYTHON · LANGGRAPH · SYSTEMS</text>
+  <text font-family="sans-serif" font-size="136" font-weight="500" letter-spacing="-7" fill="#0c0c0c">
+    <tspan x="56" y="262">Real-time systems</tspan>
+    <tspan x="56" y="380">that ship.</tspan>
+  </text>
+
+  <text x="64" y="562" font-family="monospace" font-size="20" letter-spacing="1.6" fill="#a6a6a6">MIXED REALITY · COMPUTER VISION · APPLIED AI</text>
+  <text x="1136" y="562" text-anchor="end" font-family="monospace" font-size="20" letter-spacing="1" fill="#c6f432">atiq-sm.github.io</text>
 </svg>

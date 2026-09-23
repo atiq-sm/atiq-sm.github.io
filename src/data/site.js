@@ -1,18 +1,48 @@
+// Everything the pages say about me lives here; the page files only arrange it.
 export const site = {
   name: 'Atiq Sohail Mohammed',
   tagline: 'XR developer & CS researcher — building real-time immersive systems that ship.',
-  about:
-    'MS Computer Science student at Northeastern (4.0 GPA) and XR researcher at the Roux Institute, ' +
-    "building a mixed-reality pediatric cardiac ultrasound simulator that's live at Barbara Bush " +
-    "Children's Hospital. Background spans data engineering at Capgemini, full-stack AI at Aosenuma, " +
-    'and a B.Tech in Cyber Security — converging on real-time systems, spatial computing, and software ' +
-    'with direct human impact.',
+  location: 'Portland, ME',
+  // The tag in the top bar; keep it short.
+  status: { label: 'Shipping MR POCUS', href: '/about/#now' },
+  // The homepage hero: the lede under the headline and the fine print beside it.
+  intro: {
+    lede:
+      "I'm Atiq Mohammed, an XR developer and CS researcher. I build real-time immersive " +
+      "systems, including a mixed-reality ultrasound trainer that's live at Barbara Bush " +
+      "Children's Hospital.",
+    fine:
+      'MS Computer Science at Northeastern University and XR researcher at the Roux Institute ' +
+      'with MaineHealth. Before that, full-stack AI at Aosenuma and data engineering at Capgemini.',
+  },
+  // Four numbers under the homepage headline, each with a one-line caption.
+  stats: [
+    { value: '90 Hz', label: 'Standalone mixed reality on Quest 3' },
+    { value: '<100 ms', label: 'Latency, custom 6DOF marker tracking' },
+    { value: 'n=32', label: 'Controlled study; 15/16 learners recommend it' },
+    { value: '4.0', label: 'GPA, MS Computer Science' },
+  ],
+  // The About page opens with three large sentences, then a quieter closing line.
+  about: {
+    beats: [
+      "I'm an MS Computer Science student at Northeastern (4.0 GPA) and an XR researcher at the Roux Institute.",
+      "I'm building a mixed-reality pediatric cardiac ultrasound simulator that's live at Barbara Bush Children's Hospital.",
+      'My background spans data engineering at Capgemini, full-stack AI at Aosenuma, and a B.Tech in Cyber Security.',
+    ],
+    closing:
+      'It all converges on real-time systems, spatial computing, and software with direct human impact. ' +
+      'The through-line is deliberate software: technically rigorous under the hood, calm and useful on the surface.',
+  },
+  focus: 'Clinical XR, real-time rendering and 6DOF tracking.',
+  approach:
+    'I care most about work where systems thinking, interface craft, and measurable usefulness all matter at the same time.',
   now: {
     text: 'Shipping the next pathology module for MR POCUS and wrapping up my MS at Northeastern (May 2026).',
     updatedAt: '2026-04-21',
   },
   experience: [
     {
+      kind: 'work',
       company: 'Northeastern University (Roux Institute) & MaineHealth',
       role: 'XR Developer — Student Researcher',
       period: 'Jan. 2026 — Present',
@@ -25,6 +55,7 @@ export const site = {
       ],
     },
     {
+      kind: 'work',
       company: 'Aosenuma LLC',
       role: 'AI Developer Intern',
       period: 'Sep. 2025 — Dec. 2025',
@@ -36,6 +67,7 @@ export const site = {
       ],
     },
     {
+      kind: 'work',
       company: 'Capgemini',
       role: 'Senior Analyst — Data Analytics & Engineering',
       period: 'June 2022 — Dec. 2023',
@@ -46,6 +78,7 @@ export const site = {
       ],
     },
     {
+      kind: 'education',
       company: 'Northeastern University',
       role: 'M.S. Computer Science — GPA 4.0 / 4.0',
       period: 'Jan. 2024 — May 2026',
@@ -55,6 +88,7 @@ export const site = {
       ],
     },
     {
+      kind: 'education',
       company: 'KL Deemed to be University',
       role: 'B.Tech Computer Science (Cyber Security) — GPA 8.8 / 10',
       period: 'Aug. 2018 — May 2022',
@@ -69,10 +103,28 @@ export const site = {
     // TODO: confirm your LinkedIn handle and swap in the real URL.
     linkedin: 'https://www.linkedin.com/in/atiq-sm/',
     email: 'mohammed.ati@northeastern.edu',
+    source: 'https://github.com/atiq-sm/atiq-sm.github.io',
   },
   projects: [
     {
       title: 'MR POCUS Training System',
+      slug: 'mr-pocus',
+      category: 'XR',
+      featured: true,
+      viz: 'pocus',
+      summary:
+        "Mixed-reality pediatric cardiac ultrasound trainer for Quest 3, live at Barbara Bush Children's Hospital.",
+      // The case study on /work/: its headline, then label/value pairs.
+      headline: "Mixed reality, live in a children's hospital.",
+      facts: [
+        ['Role', 'XR developer and student researcher, Roux Institute & MaineHealth'],
+        ['Platform', 'Meta Quest 3 passthrough MR, Unity 6, C#'],
+        ['Tracking', 'Custom 6DOF ArUco pipeline: sub-5 cm accuracy, sub-100 ms latency'],
+        ['Rendering', '90 Hz passthrough, with a VideoPlayer-to-RenderTexture pipeline for multi-pathology content'],
+        ['Evaluation', 'Controlled study, n=32; 15/16 learners recommend it'],
+        ['Deployed', "Barbara Bush Children's Hospital"],
+        ['Outcome', 'Medical simulation delivered in a live clinical context, tuned for responsiveness, clarity and believable spatial feedback.'],
+      ],
       description:
         "Shipped mixed-reality pediatric cardiac ultrasound simulator for Meta Quest 3 — evaluated in a controlled study (n=32, 15/16 learners recommend) and deployed at Barbara Bush Children's Hospital. Custom 6DOF ArUco tracking at sub-100ms latency, 90Hz passthrough rendering, and a VideoPlayer-to-RenderTexture pipeline for multi-pathology content.",
       href: 'https://github.com/atiq-sm/MR-POCUS',
@@ -80,6 +132,11 @@ export const site = {
     },
     {
       title: 'Cosmic Knockout',
+      category: 'Games',
+      featured: true,
+      viz: 'knockout',
+      summary:
+        'Browser platform fighter on a custom 60 fps physics engine, with online multiplayer and every sound synthesized live.',
       description:
         'Browser platform fighter on a custom 60fps fixed-timestep physics engine — percentage-based damage and knockback, six original fighters with distinct movesets, and nine behavior-tree AI tiers. Socket.IO rooms add join-by-code multiplayer with input-delay netcode, and all 28 sound effects plus three music tracks are synthesized live via the Web Audio API — no audio files.',
       href: 'https://github.com/atiq-sm/cosmic-knockout',
@@ -87,6 +144,7 @@ export const site = {
     },
     {
       title: 'Mixed Reality Zombie Shooter',
+      category: 'XR',
       description:
         'Room-scale MR shooter for Meta Quest 3: MRUK scans real geometry at runtime, NavMesh pathfinding lets zombies navigate real furniture, and a spatial spawning algorithm places enemies using surface classification and distance-constraint validation.',
       href: 'https://github.com/atiq-sm/ZombieGame',
@@ -94,6 +152,7 @@ export const site = {
     },
     {
       title: 'Fraction Kitchen',
+      category: 'Games',
       description:
         'Educational fraction game on Phaser 3 + TypeScript: a juice-bar quick-play mode plus a Slay-the-Spire-style roguelike with shops, chests, and boss battles. A Phaser-free TypeScript math core (216 Vitest tests) accepts any mathematically-equivalent answer, difficulty adapts across five tiers, and WebSocket multiplayer shares an RNG seed so both players face identical scenarios.',
       href: 'https://github.com/atiq-sm/Fraction-Kitchen',
@@ -102,6 +161,11 @@ export const site = {
     },
     {
       title: 'Voice RAG Assistant',
+      category: 'AI & vision',
+      featured: true,
+      viz: 'rag',
+      summary:
+        'Fully local voice assistant: Whisper in, reranked retrieval over ChromaDB, an Ollama model, Kokoro speech out.',
       description:
         'Fully local, voice-enabled RAG system: microphone → Whisper STT → ChromaDB retrieval → cross-encoder reranking → neighbor-chunk expansion → Ollama LLM → Kokoro TTS → speaker output. Two-stage retrieval with smart query routing (map-reduce summaries for broad queries), inline citations stripped before playback, and a Gradio web UI.',
       href: 'https://github.com/atiq-sm/voice-rag',
@@ -109,6 +173,7 @@ export const site = {
     },
     {
       title: 'NPC Dialogue Engine',
+      category: 'AI & vision',
       description:
         'Backend-first NPC conversation system: a LangGraph pipeline — intent classification → lore retrieval → assembly → generation → validation/repair → effect extraction — served over FastAPI and driven by a local Ollama model. RAG grounds replies in world lore, SQLite checkpoints persist per-thread state, and conservative game-effect extraction keeps the model from inventing state changes.',
       href: 'https://github.com/atiq-sm/NPC-AI',
@@ -116,6 +181,7 @@ export const site = {
     },
     {
       title: 'Financial Analysis with Explainable AI',
+      category: 'AI & vision',
       description:
         "ML pipeline on Lending Club loans achieving 90% ROC-AUC; UMAP + HDBSCAN clustering reveals natural borrower segments that don't map to assigned grades. Locally-run Llama 3 generates LIME/SHAP-backed plain-language explanations for every prediction.",
       href: 'https://github.com/atiq-sm/Lending-Club-Analysis',
@@ -123,6 +189,7 @@ export const site = {
     },
     {
       title: 'Ask My Screenshots',
+      category: 'AI & vision',
       description:
         'Local-first semantic search for screenshot collections — no cloud, no privacy trade-offs. Indexes screenshots with three parallel signals: VLM captions (Ollama), OCR (Tesseract/PaddleOCR), and semantic embeddings stored in sqlite-vec. Hybrid BM25 + vector retrieval, a Textual TUI, and a watchdog for continuous folder monitoring.',
       href: 'https://github.com/atiq-sm/ask-my-screenshots',
@@ -130,6 +197,12 @@ export const site = {
     },
     {
       title: 'Bare-Metal Snake (Raspberry Pi 4)',
+      slug: 'bare-metal-snake',
+      category: 'Systems',
+      featured: true,
+      viz: 'snake',
+      summary:
+        'Snake on a Raspberry Pi 4 with no OS: a 9 KB kernel, its own heap allocator, and an AI that plays when nobody does.',
       description:
         'Fully playable Snake running directly on Raspberry Pi 4 hardware — no OS, ~9 KB kernel image. Custom first-fit heap allocator with block coalescing, doubly-linked list for body segments, 1080p framebuffer rendering, and UART input (WASD + VT100 arrows). Includes an autonomous AI mode that takes over when no terminal is connected.',
       href: 'https://github.com/atiq-sm/baremetal-snake',
@@ -137,6 +210,7 @@ export const site = {
     },
     {
       title: 'Journey Builder',
+      category: 'Web',
       description:
         'React app for editing prefill mappings on a DAG of forms (Avantos front-end challenge). Dual state management — React Query owns the server-side graph (fetched once, staleTime: Infinity) while useReducer manages client-side prefill state keyed per node. Pluggable data-source registry lets new mapping types integrate with zero changes to the picker, panel, or reducer.',
       href: 'https://github.com/atiq-sm/journeyBuilder',
@@ -144,6 +218,7 @@ export const site = {
     },
     {
       title: 'ISBN Scanner',
+      category: 'AI & vision',
       description:
         'Desktop book-identification app: Sobel/Scharr gradient operators, morphological ops, and contour analysis locate barcodes under varied lighting and angles; pyzbar decodes and OpenLibrary fills in titles and authors.',
       href: 'https://github.com/atiq-sm/CS-5330-Final-Project',
@@ -151,6 +226,7 @@ export const site = {
     },
     {
       title: 'Decentralized Crowdfunding Platform',
+      category: 'Web',
       description:
         'End-to-end Ethereum dApp with upgradeable proxy pattern, re-entrancy guards, and RBAC in Solidity — 25% gas cost reduction and 100% test coverage across 1,000+ Ganache transactions. React frontend with Hardhat local chain.',
       // TODO: replace with the exact repo URL once confirmed.
@@ -159,6 +235,7 @@ export const site = {
     },
     {
       title: 'Multiplayer Network Game',
+      category: 'Systems',
       description:
         'Concurrent TCP game server in C handling 50K msgs/s with mutex-synchronized game state and POSIX thread architecture supporting 5 simultaneous players — real-time state replication with low-latency socket design.',
       // TODO: replace with the exact repo URL once confirmed.
@@ -167,6 +244,7 @@ export const site = {
     },
     {
       title: 'EV Route Optimization',
+      category: 'AI & vision',
       description:
         'RL-based route optimizer with a custom reward model achieving 15% battery efficiency improvement over baseline; training parallelized via multiprocessing for 40% faster convergence, with real-time REST API dashboard integration.',
       // TODO: replace with the exact repo URL once confirmed.
@@ -175,11 +253,12 @@ export const site = {
     },
     {
       title: 'Portfolio Site',
+      category: 'Web',
       description:
-        'This site — Vite + React with live GitHub repo metadata, calm scroll reveals, a command palette (⌘K), and a monospace-driven type + color system with light / dark / system theme switching.',
+        'This site: a Vite + React multi-page build, pre-rendered to static HTML, with Bayer-dithered canvas illustrations, live GitHub repo stats and cross-page view transitions. The design language is adapted from the Laya playground by brain function collapse.',
       href: 'https://github.com/atiq-sm/atiq-sm.github.io',
       liveHref: 'https://atiq-sm.github.io/',
-      tags: ['React', 'Vite', 'Framer Motion'],
+      tags: ['React', 'Vite', 'Pre-rendering', 'Canvas'],
     },
   ],
 };
