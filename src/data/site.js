@@ -4,13 +4,13 @@ export const site = {
   tagline: 'XR developer & CS researcher — building real-time immersive systems that ship.',
   location: 'Portland, ME',
   // The tag in the top bar; keep it short.
-  status: { label: 'Shipping MR POCUS', href: '/about/#now' },
+  status: { label: 'Building CardAlive', href: '/work/#cardalive' },
   // The homepage hero: the lede under the headline and the fine print beside it.
   intro: {
     lede:
-      "I'm Atiq Mohammed, an XR developer and CS researcher. I build real-time immersive " +
-      "systems, including a mixed-reality ultrasound trainer that's live at Barbara Bush " +
-      "Children's Hospital.",
+      "I'm Atiq Mohammed, an XR developer and CS researcher. I co-founded CardAlive, a " +
+      'mixed-reality tabletop card battler, and built an ultrasound trainer that\'s live at ' +
+      "Barbara Bush Children's Hospital.",
     fine:
       'MS Computer Science at Northeastern University and XR researcher at the Roux Institute ' +
       'with MaineHealth. Before that, full-stack AI at Aosenuma and data engineering at Capgemini.',
@@ -26,7 +26,7 @@ export const site = {
   about: {
     beats: [
       "I'm an MS Computer Science student at Northeastern (4.0 GPA) and an XR researcher at the Roux Institute.",
-      "I'm building a mixed-reality pediatric cardiac ultrasound simulator that's live at Barbara Bush Children's Hospital.",
+      "I co-founded CardAlive, a mixed-reality monster card battler, and built a pediatric cardiac ultrasound simulator that's live at Barbara Bush Children's Hospital.",
       'My background spans data engineering at Capgemini, full-stack AI at Aosenuma, and a B.Tech in Cyber Security.',
     ],
     closing:
@@ -37,10 +37,20 @@ export const site = {
   approach:
     'I care most about work where systems thinking, interface craft, and measurable usefulness all matter at the same time.',
   now: {
-    text: 'Shipping the next pathology module for MR POCUS and wrapping up my MS at Northeastern (May 2026).',
-    updatedAt: '2026-04-21',
+    text: 'Co-founding CardAlive, a mixed-reality card battler for Meta Quest 3, and still shipping pathology modules for MR POCUS.',
+    updatedAt: '2026-09-23',
   },
   experience: [
+    {
+      kind: 'work',
+      company: 'CardAlive',
+      // TODO: confirm the title (Co-founder, CTO, …), the start date, and add a location if there is one.
+      role: 'Co-founder',
+      period: '2026 — Present',
+      bullets: [
+        'Co-founding a mixed-reality tabletop monster battler for Meta Quest 3: scanning a printed card summons its monster onto the real table, where it fights other monsters in turn-based combat.',
+      ],
+    },
     {
       kind: 'work',
       company: 'Northeastern University (Roux Institute) & MaineHealth',
@@ -106,6 +116,30 @@ export const site = {
     source: 'https://github.com/atiq-sm/atiq-sm.github.io',
   },
   projects: [
+    {
+      title: 'CardAlive',
+      slug: 'cardalive',
+      category: 'XR',
+      featured: true,
+      viz: 'cardalive',
+      summary:
+        'Mixed-reality tabletop monster battler for Quest 3: scan a physical card and its monster spawns on your table to fight, turn by turn.',
+      headline: 'Scan a card. Fight on your table.',
+      facts: [
+        // TODO: the exact title, the engine and the launch status.
+        ['Role', 'Co-founder'],
+        ['Platform', 'Meta Quest 3, passthrough mixed reality'],
+        ['The loop', 'Scan a monster card, watch it summoned onto the table, then battle another monster turn by turn'],
+        ['Combat', 'Moves such as Water Blade and Strike, hit points, enemy turns, and a rematch when one monster falls'],
+        ['Status', 'In development'],
+      ],
+      description:
+        'Mixed-reality tabletop monster battler for Meta Quest 3, which I co-founded. Each printed card carries a code the headset scans; the monster summons onto the real table through a spell circle and squares off against another monster in turn-based combat: pick a move, trade hits, watch the health bars drain, and go again when one falls.',
+      liveHref: 'https://cardalive.xyz/',
+      liveLabel: 'cardalive.xyz',
+      // TODO: add the engine and language (Unity? C#?).
+      tags: ['Meta Quest 3', 'Mixed Reality', 'Passthrough', 'Card scanning', 'Turn-based combat'],
+    },
     {
       title: 'MR POCUS Training System',
       slug: 'mr-pocus',

@@ -4,7 +4,8 @@ import { parseGithubRepo } from '../hooks/useGithubRepo.js';
 import { projectSlug } from '../lib/format.js';
 
 // "Repository" only when the link is a repo (a few still point at the
-// profile until their URLs are confirmed), and "Live" when there is one.
+// profile until their URLs are confirmed), and "Live" (or `liveLabel`) when
+// there is one.
 export function ProjectLinks({ project }) {
   const isRepo = Boolean(parseGithubRepo(project.href)) || !/github\.com/i.test(project.href ?? '');
   if (!isRepo && !project.liveHref) return null;
@@ -17,7 +18,7 @@ export function ProjectLinks({ project }) {
       )}
       {project.liveHref && (
         <a className="btn" href={project.liveHref} target="_blank" rel="noreferrer noopener">
-          Live ↗
+          {project.liveLabel ?? 'Live'} ↗
         </a>
       )}
     </p>
