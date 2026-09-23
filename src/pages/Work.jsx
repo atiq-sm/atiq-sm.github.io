@@ -26,7 +26,11 @@ export default function Work() {
   // A link to #slug while a filter hides that entry: show everything, then go there.
   useEffect(() => {
     const reveal = () => {
-      const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      let id = location.hash.slice(1);
+      try {
+        id = decodeURIComponent(id);
+      } catch {} // a malformed hash is just an id that matches nothing
+      const target = id ? document.getElementById(id) : null;
       if (!target?.closest('[hidden]')) return;
       setCategory('all');
       requestAnimationFrame(() => target.scrollIntoView());
