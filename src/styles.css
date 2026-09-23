@@ -141,6 +141,7 @@ h1 {
 }
 
 h2,
+.stats b,
 .hero.compact h1 {
   font-size: var(--fs-h2);
   line-height: 0.94;
@@ -149,7 +150,8 @@ h2,
 
 .lede,
 .lead,
-.big {
+.big,
+.project h3 {
   font-size: var(--fs-lead);
   line-height: 1.28;
   letter-spacing: -0.02em;
@@ -165,6 +167,10 @@ nav,
 time,
 dt,
 .fine,
+.period,
+.where,
+.stack,
+.stats span,
 footer {
   font: var(--fs-mono) / 1.6 var(--mono);
   letter-spacing: 0;
@@ -177,7 +183,8 @@ button,
 .skip-link,
 nav,
 time,
-dt {
+dt,
+.period {
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -458,6 +465,37 @@ a.tag:hover {
   opacity: 0.78;
 }
 
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+  margin-top: var(--s4);
+}
+
+.stats > div {
+  padding-left: 12px;
+  border-left: 1px solid var(--ink);
+}
+
+.stats b {
+  display: block;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.stats span {
+  display: block;
+  margin-top: 10px;
+}
+
+/* four across only while "<100 ms" still fits a quarter of the page */
+@media (max-width: 1000px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .band {
   padding: var(--s4) var(--gut);
 }
@@ -609,6 +647,128 @@ section.block {
 .lead a:hover,
 .prose a:hover {
   color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ featured work: four across, illustration over text */
+
+.featured {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s4) var(--gap);
+}
+
+@media (max-width: 1199px) {
+  .featured {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .featured {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.featured + .fine {
+  margin-top: var(--s4);
+}
+
+.project h3 {
+  margin: 0 0 var(--s1);
+  font-weight: 500;
+}
+
+.project h3 a {
+  text-decoration: none;
+}
+
+.project h3 a:hover {
+  color: var(--accent);
+}
+
+.project .summary {
+  max-width: 44ch;
+  margin: 0 0 var(--s2);
+  color: var(--dim);
+}
+
+.stack {
+  margin: 0;
+  color: var(--dim);
+}
+
+/* the illustration frame: a dithered placeholder until the canvas paints */
+.viz {
+  position: relative;
+  aspect-ratio: 420 / 262;
+  margin-bottom: var(--s2);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  color: var(--line);
+  background: var(--dither-25), var(--ink);
+}
+
+.viz.large {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ timeline: one row per role on the page grid */
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline > li {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  padding: var(--s2) 0;
+  border-top: 1px solid var(--line);
+}
+
+.timeline .period {
+  grid-column: 1 / span 3;
+  margin: 0;
+  color: var(--accent);
+}
+
+.timeline .what {
+  grid-column: 4 / span 6;
+}
+
+.timeline h3 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 500;
+}
+
+.timeline .what p {
+  margin: 0;
+  color: var(--dim);
+}
+
+.timeline .where {
+  grid-column: 10 / span 3;
+  margin: 0;
+  color: var(--faint);
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .timeline .period,
+  .timeline .what,
+  .timeline .where {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .timeline .what {
+    margin-top: 4px;
+  }
 }
 
 /* live repo stats: one mono line that holds its height while it loads */

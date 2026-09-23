@@ -33,3 +33,8 @@ export function formatRelative(iso) {
   const years = Math.floor(days / 365);
   return `Updated ${years}y ago`;
 }
+
+// A project's anchor on /work/: its `slug` if it has one, else its title.
+export function projectSlug(project) {
+  return project.slug ?? slugify(project.title);
+}
