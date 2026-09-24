@@ -36,6 +36,15 @@ export default function Story({ project }) {
             {section.body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            {section.steps?.length > 0 && (
+              <ol className="steps">
+                {section.steps.map(([name, text]) => (
+                  <li key={name}>
+                    <b>{name}</b> {text}
+                  </li>
+                ))}
+              </ol>
+            )}
           </div>
           {section.figures?.length > 0 && (
             <div className="shots">

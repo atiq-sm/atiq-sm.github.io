@@ -31,8 +31,8 @@ export default function Home() {
         aside={
           <>
             <p className="lead">
-              Two mixed-reality products, then the systems work underneath:
-              a kernel and a physics engine written from scratch.
+              Two mixed-reality products, an agent pipeline, and the systems
+              work underneath: a kernel and a physics engine from scratch.
             </p>
             <a className="btn" href="/work/">All work →</a>
           </>

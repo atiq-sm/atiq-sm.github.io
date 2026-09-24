@@ -8,69 +8,69 @@ export const site = {
   // The homepage hero: the lede under the headline and the fine print beside it.
   intro: {
     lede:
-      "I'm Atiq Mohammed, an XR engineer. I build Quest 3 software that responds to the physical " +
-      'world: I was lead developer of a pediatric ultrasound trainer that clinicians tested at ' +
-      "Barbara Bush Children's Hospital, and I co-founded CardAlive, a tabletop card battler.",
+      "I'm Atiq Mohammed, an XR engineer who builds with AI agents. I was lead developer of a " +
+      "pediatric ultrasound trainer that clinicians tested at Barbara Bush Children's Hospital, and " +
+      "I'm co-founder and CTO of CardAlive, a mixed-reality card battler for Quest 3.",
     fine:
-      'MS Computer Science, Northeastern University (May 2026). XR developer at the Roux Institute ' +
-      'with MaineHealth; before that, full-stack AI at Aosenuma and data engineering at Capgemini.',
+      'MS Computer Science, Northeastern University (May 2026). Before CardAlive: XR developer at the ' +
+      'Roux Institute with MaineHealth, full-stack AI at Aosenuma, and data engineering at Capgemini.',
   },
   // Four facts under the homepage headline, in order, each with a one-line caption.
   stats: [
     { value: '16/16', label: 'MR learners told the pathologies apart, vs 5/16 with standardized patients' },
-    { value: '15/16', label: 'Learners recommend the MR trainer, and 4 of 4 faculty' },
+    { value: 'Agents', label: 'Unity, Blender and Mixamo driven through MCP to build CardAlive' },
     { value: 'MS CS', label: 'Northeastern University, graduated May 2026' },
     { value: 'Now', label: 'Co-founding CardAlive, a mixed-reality card battler for Quest 3' },
   ],
   // The closing lime band on every page.
-  // TODO: confirm the roles you want and when you can start.
   cta: {
     title: 'Open to XR engineering roles.',
     lede:
-      'Applied computer vision and research engineering too. I finished my MS at Northeastern in May 2026; ' +
-      "if your team builds for Quest, Vision Pro or other spatial platforms, I'd like to hear about it.",
+      'Applied AI and agentic tooling too. I finished my MS at Northeastern in May 2026 and can start ' +
+      "immediately; if your team builds for Quest, Vision Pro or other spatial platforms, I'd like to hear about it.",
   },
   // The About page opens with three large sentences, then a quieter closing line.
   about: {
     beats: [
       'I like software where computation meets the physical world: a controller held to a manikin that plays the right ultrasound, a printed card that becomes a monster on your table.',
       "That pulled me from data engineering at Capgemini into XR. At Northeastern's Roux Institute I was lead developer of a pediatric ultrasound trainer that clinicians tested at Barbara Bush Children's Hospital, and now I'm co-founding CardAlive.",
-      'I like knowing what is underneath, too: I have written a kernel that runs Snake on a bare Raspberry Pi, and the physics engine for a browser fighting game.',
+      'I build with AI agents, and build them: CardAlive is made through agents driving Unity, Blender and Mixamo, and my NPC engine checks and repairs its own replies. Underneath it all, I like the machinery: a kernel that runs Snake on a bare Raspberry Pi.',
     ],
     closing:
       'The through-line is deliberate software: technically rigorous under the hood, calm and useful on the surface.',
   },
-  focus: 'Mixed reality, real-time interaction and computer vision.',
+  focus: 'Mixed reality, real-time interaction, computer vision and agentic AI tooling.',
   approach:
     'I care most about work where systems thinking, interface craft, and measurable usefulness all matter at the same time.',
   now: {
-    text: 'Co-founding CardAlive, a mixed-reality card battler for Meta Quest 3, and looking for a full-time XR engineering role.',
-    updatedAt: '2026-09-24',
+    text: 'Building CardAlive as co-founder and CTO, and available now for XR engineering and applied AI roles.',
+    updatedAt: '2026-09-25',
   },
   experience: [
     {
       kind: 'work',
       company: 'CardAlive',
-      // TODO: confirm the title (Co-founder, CTO, …), the start month, and add a location if there is one.
-      role: 'Co-founder',
+      // TODO: the start month, and a location if there is one.
+      role: 'Co-founder & CTO',
       period: '2026 — Present',
       bullets: [
-        'Co-founded a mixed-reality card battler for Meta Quest 3: scanning a printed card summons its monster onto the real table for turn-based battles.',
-        // TODO: what you build at CardAlive, from your notes.
+        'Building a mixed-reality tabletop creature battler for Meta Quest 3 in Unity 6 and C#: scan printed QR cards and two 3D monsters appear on your real table for a turn-based duel.',
+        'Built the card-to-fight pipeline: passthrough camera frames, multi-QR decoding with ZXing.NET, and placement by raycasting against the MRUK depth mesh so creatures stand on the real table.',
+        'Wrote the combat system, with rigged and procedural animation paths and layered hit detection (animation event, blade-velocity peak, then a timer), so every attack lands even on a model without a rig.',
+        'Generated nearly every asset in code: a DSP synth for all sound and a five-stem adaptive score, pooled VFX, SDF-drawn UI, and QR cards verified by re-decoding.',
+        'Build with AI agents: Unity, Blender and Mixamo driven through MCP servers, editor scripts that bake every scene and prefab, and headless builds for desktop and Quest.',
       ],
     },
     {
       kind: 'work',
       company: 'Northeastern University (Roux Institute) & MaineHealth',
       role: 'XR Developer, Research',
-      // TODO: confirm whether this role continued after May 2026.
-      period: 'Jan. 2026 — Present',
+      period: 'Jan. 2026 — Apr. 2026',
       location: 'Portland, ME',
       bullets: [
         'Lead developer of a mixed-reality pediatric cardiac ultrasound trainer for Meta Quest 3, in Unity and C#. In a controlled study (n = 32) at the BBCH Pediatric Ultrasound Conference, all 16 MR learners told the pathologies apart, against 5 of 16 trained on standardized patients.',
         'Designed probe-pose matching with position and angle tolerances and entry and exit dwell gates, so clips start reliably and hold steady while a learner adjusts the probe.',
-        // TODO: confirm how the ArUco pipeline relates to the spatial-anchor approach on the poster.
-        'Built a custom 6DOF marker-tracking pipeline with OpenCV ArUco, bridged into Unity through an Android plugin and a C# JNI layer.',
+        'Prototyped 6DOF marker tracking with OpenCV ArUco through an Android plugin and a C# JNI bridge, then replaced it with Quest 3 spatial anchors when markers proved too sensitive to angle, lighting and distance.',
         'Structured the app as a Boot, Capture, Reconfirm and Runtime state machine with separate tracking, evaluation and feedback modules, so new pathologies and organs are added as content rather than code.',
       ],
     },
@@ -168,8 +168,7 @@ export const site = {
           ['Role', 'Lead developer; I built the app'],
           ['Team', "The Roux Institute's Working Lab at Northeastern, with MaineHealth pediatricians"],
           ['Platform', 'Meta Quest 3 passthrough MR, Unity 6, C#'],
-          // TODO: confirm the end date if the project has wrapped up.
-          ['When', '2026'],
+          ['When', 'Jan. — Apr. 2026'],
           ['Evaluated', 'Controlled study, n = 32, at the BBCH Pediatric Ultrasound Conference'],
         ],
         sections: [
@@ -205,6 +204,13 @@ export const site = {
             ],
           },
           {
+            title: 'A decision: anchors over markers',
+            body: [
+              'I first built marker tracking with OpenCV ArUco, bridged into Unity through an Android plugin. It depended too much on viewing angle, lighting and distance, and every lost marker interrupted the session.',
+              "So I dropped it for the Quest 3's persistent spatial anchors, which turned out to be very accurate, and the experience became seamless: the learner just picks up the probe.",
+            ],
+          },
+          {
             title: 'The hard part',
             body: [
               "Deciding when the probe is at a point. Hands shake and tracking jitters, so a plain distance check fires on the way past a point and flickers at its edge.",
@@ -215,7 +221,7 @@ export const site = {
           {
             title: "What's next",
             body: [
-              'The architecture was built for more than the heart: the next module covers lung ultrasound, with 8 probe points and 4 pathologies across 32 clips.',
+              'The architecture was built for more than the heart: the planned next module covers lung ultrasound, with 8 probe points and 4 pathologies across 32 clips.',
             ],
           },
         ],
@@ -248,8 +254,7 @@ export const site = {
         },
         credits:
           "Atiq Mohammed (lead developer), Pethuel Mutalenu, Ryan Bockmon, PhD, Scott Valcourt, PhD, Michael Zubrow, MD, and Michael Ferguson, MD. The Roux Institute at Northeastern University, MaineHealth and Barbara Bush Children's Hospital.",
-        // TODO: add the URL of Northeastern's public post of the project video.
-        evidence: [],
+        evidence: [{ href: 'https://lnkd.in/p/gGXfJqgF', label: "Northeastern's video" }],
         next: 'cardalive',
       },
     },
@@ -260,23 +265,21 @@ export const site = {
       category: 'XR',
       viz: 'cardalive',
       summary:
-        'A mixed-reality card battler I co-founded: scan a printed monster card with a Quest 3 and its monster is summoned onto your real table to fight, turn by turn.',
+        'A mixed-reality creature battler I co-founded and build as CTO: scan printed QR cards with a Quest 3 and two 3D monsters appear on your real table for a turn-based duel.',
       headline: 'Scan a card. Fight on your table.',
       facts: [
-        // TODO: the exact title.
-        ['Role', 'Co-founder'],
-        ['Platform', 'Meta Quest 3, passthrough mixed reality'],
-        ['Status', 'In development'],
+        ['Role', 'Co-founder & CTO; I build the game'],
+        ['Platform', 'Meta Quest 3 passthrough MR and desktop, from one Unity codebase'],
+        ['The hard part', 'Landing creatures on a real table from a QR code, and making every attack land, rig or no rig'],
       ],
       description:
-        'A mixed-reality tabletop card battler for Meta Quest 3, which I co-founded. The headset scans a printed card, its monster is summoned onto the real table, and it fights another monster in turn-based combat.',
+        'A mixed-reality tabletop creature battler for Meta Quest 3, which I co-founded and build as CTO. The headset scans printed QR cards, their monsters appear on the real table, and two of them fight a turn-based, anime-style duel.',
       liveHref: 'https://cardalive.xyz/',
       liveLabel: 'cardalive.xyz',
-      // TODO: add the engine and language.
-      tags: ['Meta Quest 3', 'Mixed Reality', 'Passthrough', 'Card scanning', 'Turn-based combat'],
+      tags: ['Unity 6', 'C#', 'OpenXR', 'Meta XR SDK', 'MRUK', 'ZXing.NET', 'glTFast', 'HLSL', 'MCP'],
       story: {
         title: 'CardAlive',
-        pitch: 'Printed monster cards that come alive on the table in front of you, and fight.',
+        pitch: 'Print a card, scan it, and its monster steps onto your real table to fight.',
         video: {
           src: '/media/cardalive-gameplay.mp4',
           poster: '/media/cardalive-turn.jpg',
@@ -286,18 +289,20 @@ export const site = {
           caption: 'Recorded through the headset: scan, summon, battle and rematch, in one take.',
         },
         facts: [
-          // TODO: the exact title and start month.
-          ['Role', 'Co-founder'],
-          ['Platform', 'Meta Quest 3, passthrough mixed reality'],
+          ['Role', 'Co-founder & CTO; I build the game'],
+          ['Platform', 'Meta Quest 3 and 3S, plus a desktop build with a webcam'],
+          ['Engine', 'Unity 6, C#, OpenXR, Meta XR Core and MRUK'],
+          // TODO: the start month.
           ['When', '2026 — present'],
-          ['Status', 'In development'],
+          ['Status', 'In development, with a waitlist at cardalive.xyz'],
         ],
         sections: [
           {
             title: 'How it plays',
             body: [
-              'Put a card on the table and look at it. The headset reads the code printed on the card, a summoning circle opens around it, and its monster rises out of it at table scale: a goblin raider, a slime.',
-              'Scan a second card and the two face off. Each turn you pick a move from a panel in the room, such as Water Blade, it plays out across the table, and the health bars drain until one monster falls. Then press A for a rematch.',
+              'Put a card on the table and look at it. The headset reads the QR code printed on the card, a summoning circle opens, and its monster rises out of it at table scale.',
+              'Scan a second card and the two face off in a turn-based, anime-style duel: pick a move from a panel in the room, watch it play out across the table, and trade hits until one falls. Then press A for a rematch.',
+              'There are four creatures so far, each with a trait: Aqua Slime (Absorb), Goblin Raider (Enrage), Skeleton Warrior (Undying: it revives) and Dire Wolf (First Instinct). Any two cards can fight.',
             ],
             figures: [
               {
@@ -330,11 +335,69 @@ export const site = {
               },
             ],
           },
-          // TODO: "What I built", "The hard part" and "What's next", from your notes.
+          {
+            title: 'What I built',
+            body: [
+              'The whole game, in Unity 6 and C#, from one codebase for Quest 3 and a desktop demo. From card to fight, it runs in five steps:',
+            ],
+            steps: [
+              ['Camera', "On Quest, frames come from the Passthrough Camera API, tagged with the head pose at the moment of capture; on desktop, from a webcam."],
+              ['Decode', 'ZXing.NET finds every QR code in a frame, so both cards are read at once, a few times a second.'],
+              ['Place', 'A ray from each code is cast against the depth mesh MRUK builds of the room, so the creature stands on the real table.'],
+              ['Spawn', 'The code picks the creature, which appears with its health bar, facing its opponent.'],
+              ['Battle', 'A state machine runs the duel: scanning, ready, then the player and enemy turns until a creature falls.'],
+            ],
+          },
+          {
+            title: 'The hard part',
+            body: [
+              'Making every attack land. Damage should arrive on the hit, not the button press, but not every creature has a clean rig. Combat plays rigged animation clips when a creature has them and falls back to procedural animation when it does not.',
+              "The hit itself comes from the first signal available: an event in the animation, else the peak of the blade's velocity, else a timer. A broken clip slows a creature down; it never stalls the fight.",
+            ],
+          },
+          {
+            title: 'Decisions',
+            body: [
+              'Generate it rather than import it. Almost nothing in the game is a binary asset: a DSP synth makes every sound, creature voices included, with a five-stem adaptive score that follows the tension of the battle. The hit-stops, flashes, beams and shockwaves are pooled effects, the interface is drawn from signed distance fields, and seven shaders are written by hand. Every printed card is generated with high error correction and decoded again to prove it scans.',
+              'Comfort over spectacle in the headset. The desktop build shakes the screen on big hits; the Quest build never does, and hits land through controller haptics instead.',
+            ],
+          },
+          {
+            title: 'How I build it',
+            body: [
+              'With AI agents. MCP servers let an agent work directly in the Unity editor, Blender and Mixamo. Scenes, prefabs and animation controllers are baked by editor scripts rather than assembled by hand, so they can be rebuilt at any time, and headless builds produce the desktop, Link and Quest versions from one command.',
+            ],
+          },
+          {
+            title: "What's next",
+            body: [
+              'An animation platform: data-driven clip sets per creature, a one-command creature bake that fails when a clip is broken, and IK grounding for creatures that are not humanoid.',
+              'The long-term goal is a licensable engine for mixed-reality card games, not a clone of an existing one.',
+            ],
+          },
         ],
         evidence: [{ href: 'https://cardalive.xyz/', label: 'cardalive.xyz' }],
         next: 'mr-pocus',
       },
+    },
+    {
+      title: 'NPC Dialogue Engine',
+      slug: 'npc-dialogue-engine',
+      tier: 'flagship',
+      category: 'AI & agents',
+      viz: 'npc',
+      summary:
+        "An agent pipeline that lets game characters talk freely without breaking the game: each reply is grounded in lore, validated, repaired, and checked before it can change the game's state.",
+      headline: "Characters that can't break the game.",
+      facts: [
+        ['What', "A backend that turns a player's line into an in-character reply and a safe set of game effects"],
+        ['The hard part', "Letting a model improvise while the game stays in charge: drafts are validated and repaired, and effects are extracted conservatively, so a character can't invent a quest or hand out an item the game doesn't allow"],
+        ['How', 'A LangGraph pipeline (intent, lore retrieval, assembly, generation, validation and repair, effect extraction) on FastAPI, with a local Ollama model and each conversation checkpointed in SQLite'],
+      ],
+      description:
+        "An agent pipeline for game characters: a LangGraph graph classifies intent, retrieves world lore, drafts a reply with a local model, then validates and repairs it before any effect reaches the game.",
+      href: 'https://github.com/atiq-sm/NPC-AI',
+      tags: ['Python', 'LangGraph', 'FastAPI', 'Ollama', 'RAG', 'SQLite'],
     },
     {
       title: 'Bare-Metal Snake (Raspberry Pi 4)',
@@ -390,15 +453,6 @@ export const site = {
         'Ask your documents a question out loud and hear the answer, with nothing leaving your machine. Whisper transcribes, a two-stage retriever finds and reranks passages, a local model answers with citations, and Kokoro reads it back. Broad "summarize this" questions go to a map-reduce summary instead of retrieval, so both narrow and broad questions work.',
       href: 'https://github.com/atiq-sm/voice-rag',
       tags: ['Python', 'Whisper', 'ChromaDB', 'Ollama', 'Kokoro TTS'],
-    },
-    {
-      title: 'NPC Dialogue Engine',
-      tier: 'more',
-      category: 'AI & vision',
-      description:
-        "Game characters that talk freely without breaking the game. A LangGraph pipeline classifies intent, retrieves world lore, generates a reply with a local model, then validates and repairs it. Changes to game state are extracted conservatively, so a character can't invent a quest or hand out an item the game doesn't allow.",
-      href: 'https://github.com/atiq-sm/NPC-AI',
-      tags: ['Python', 'LangGraph', 'FastAPI', 'Ollama', 'SQLite'],
     },
     {
       title: 'Ask My Screenshots',

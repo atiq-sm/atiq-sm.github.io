@@ -16,7 +16,7 @@ export default function Work() {
       <Hero
         compact
         title="Selected work."
-        lede="Two mixed-reality products, a kernel and a physics engine written from scratch, and the experiments around them."
+        lede="Two mixed-reality products, an agent pipeline, a kernel and a physics engine written from scratch, and the experiments around them."
       />
       {tier('flagship').map((project) => (
         <CaseStudy key={project.title} project={project} />

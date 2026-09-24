@@ -54,10 +54,10 @@ Section headings ("Selected work.", "Now.") live in the page files. In
     with a one-line `summary`, a `headline` and `facts`; `'more'` gives it a
     full entry, `'archive'` one line
   - `viz` to give it an animated illustration (`cardalive`, `pocus`, `knockout`,
-    `rag`, `snake`)
+    `npc`, `rag`, `snake`)
   - `story` to give it its own page at `/work/<slug>/`: a `pitch`, a `video` or
     lead `figure`, `facts`, `sections` (each with `body` paragraphs and
-    optional `figures`), `results`, `credits`, `evidence` links and the `next`
+    optional numbered `steps` and `figures`), `results`, `credits`, `evidence` links and the `next`
     story. A new story also needs its HTML file, and an entry in
     `vite.config.js` (`input` and `PAGE_DIRS`) and in `scripts/prerender.mjs`
   - `liveLabel` to name its live link (it reads "Live" otherwise)
