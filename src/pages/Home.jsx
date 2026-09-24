@@ -7,13 +7,13 @@ import Timeline from '../components/Timeline.jsx';
 
 // The overview: everything longer lives on /work/ and /about/.
 export default function Home() {
-  const featured = site.projects.filter((p) => p.featured);
+  const featured = site.projects.filter((p) => p.tier === 'flagship');
   const roles = site.experience.filter((job) => job.kind === 'work');
 
   return (
     <>
       <Hero
-        title="Real-time systems that ship."
+        title="Mixed reality that works in real rooms."
         lede={site.intro.lede}
         fine={site.intro.fine}
         actions={
@@ -31,10 +31,10 @@ export default function Home() {
         aside={
           <>
             <p className="lead">
-              From clinical mixed reality to a game that runs with no operating
-              system at all.
+              Two mixed-reality products, an agent pipeline, and the systems
+              work underneath: a kernel and a physics engine from scratch.
             </p>
-            <a className="btn" href="/work/">All {site.projects.length} projects →</a>
+            <a className="btn" href="/work/">All work →</a>
           </>
         }
       >
@@ -43,7 +43,7 @@ export default function Home() {
             <ProjectCard key={project.title} project={project} />
           ))}
         </div>
-        <p className="fine">The animations are illustrations, not recordings.</p>
+        <p className="fine">Illustrations; the case studies have real footage.</p>
       </Section>
 
       <Section
@@ -51,8 +51,8 @@ export default function Home() {
         aside={
           <>
             <p className="lead">
-              Research, engineering, and product work across spatial computing,
-              healthcare AI, and data systems.
+              From data engineering at Capgemini to mixed reality at the Roux
+              Institute, and now CardAlive.
             </p>
             <a className="btn" href="/about/#experience">Full history →</a>
           </>

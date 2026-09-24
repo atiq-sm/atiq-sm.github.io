@@ -38,3 +38,9 @@ export function formatRelative(iso) {
 export function projectSlug(project) {
   return project.slug ?? slugify(project.title);
 }
+
+// Where a project's links go: its own page if it has a story, else its entry on /work/.
+export function projectHref(project) {
+  const slug = projectSlug(project);
+  return project.story ? `/work/${slug}/` : `/work/#${slug}`;
+}

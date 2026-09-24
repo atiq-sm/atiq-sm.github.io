@@ -7,7 +7,7 @@ export default function Footer() {
     <footer>
       <div className="cols3">
         <p>
-          <b>{site.name}</b>. XR developer and CS researcher in {site.location}.
+          <b>{site.name}</b>. XR engineer in {site.location}.
         </p>
         <p>
           <a href={`mailto:${email}`}>Email</a>,{' '}

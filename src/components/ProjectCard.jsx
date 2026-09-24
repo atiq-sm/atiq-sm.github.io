@@ -1,7 +1,7 @@
 import RepoMeta from './RepoMeta.jsx';
 import ProjectViz from './ProjectViz.jsx';
 import { parseGithubRepo } from '../hooks/useGithubRepo.js';
-import { projectSlug } from '../lib/format.js';
+import { projectHref, projectSlug } from '../lib/format.js';
 
 // "Repository" only when the link is a repo (a few still point at the
 // profile until their URLs are confirmed), and "Live" (or `liveLabel`) when
@@ -26,17 +26,13 @@ export function ProjectLinks({ project }) {
 }
 
 // A project as a card. On the homepage (default) it is a featured teaser that
-// links to its entry on /work/; with `full` it is that entry, with the whole
-// write-up, its number and category, and its links.
-export default function ProjectCard({ project, index, full = false, hidden = false }) {
-  const slug = projectSlug(project);
-
+// links to its page or its entry on /work/; with `full` it is that entry, with
+// the whole write-up, its category, and its links.
+export default function ProjectCard({ project, full = false }) {
   if (full) {
     return (
-      <article className="project entry" id={slug} hidden={hidden || undefined}>
-        <p className="label">
-          <span className="num">{String(index).padStart(2, '0')}</span> {project.category}
-        </p>
+      <article className="project entry" id={projectSlug(project)}>
+        <p className="label">{project.category}</p>
         <h3>{project.title}</h3>
         <p className="description">{project.description}</p>
         {project.tags?.length > 0 && <p className="stack">{project.tags.join(' · ')}</p>}
@@ -50,13 +46,12 @@ export default function ProjectCard({ project, index, full = false, hidden = fal
     <article className="project">
       {project.viz && <ProjectViz name={project.viz} />}
       <h3>
-        <a href={`/work/#${slug}`}>
+        <a href={projectHref(project)}>
           {project.title}
           <span aria-hidden="true"> →</span>
         </a>
       </h3>
       <p className="summary">{project.summary ?? project.description}</p>
-      {project.tags?.length > 0 && <p className="stack">{project.tags.join(' · ')}</p>}
       <RepoMeta href={project.href} />
     </article>
   );

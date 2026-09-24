@@ -4,12 +4,15 @@ import react from '@vitejs/plugin-react';
 
 const page = (path) => fileURLToPath(new URL(path, import.meta.url));
 
+// Every page that lives in a directory, as GitHub Pages serves it.
+const PAGE_DIRS = ['/work', '/about', '/work/mr-pocus', '/work/cardalive'];
+
 // GitHub Pages answers /work with a 301 to /work/. Do the same in dev and
 // preview, where appType 'mpa' would otherwise return an empty 404.
 function trailingSlash() {
   const redirect = (req, res, next) => {
     const [path, query] = req.url.split('?');
-    if (path === '/work' || path === '/about') {
+    if (PAGE_DIRS.includes(path)) {
       res.writeHead(301, { Location: `${path}/${query ? `?${query}` : ''}` });
       res.end();
       return;
@@ -43,6 +46,8 @@ export default defineConfig(({ isSsrBuild }) => ({
         home: page('./index.html'),
         work: page('./work/index.html'),
         about: page('./about/index.html'),
+        'mr-pocus': page('./work/mr-pocus/index.html'),
+        cardalive: page('./work/cardalive/index.html'),
         notfound: page('./404.html'),
       },
     },
