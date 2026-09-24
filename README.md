@@ -116,9 +116,18 @@ presented through an ordered (Bayer) dither in ink and lime:
 - `src/viz/*.js`: one scene each, a pure function of time drawn with the
   pixel-snapped kit in `src/viz/kit.js`
 
+- `src/viz/font.js`: a 5x7 dot-matrix font, for readouts (`k.text`) and for
+  ASCII scenes (`k.ascii`, which draws a grid of glyphs from a shading ramp)
+
+A scene is `{ label, labels, still, draw(k, t, io) }`, plus optionally
+`init()` and `hint`. `draw` gets the kit, the time in seconds, and `io`: the
+pointer (`x`, `y` in scene pixels, `inside`), the `taps` since the last frame,
+the step `dt`, and `state`, which `init()` creates for each frame on the page.
+A scene with a `hint` shows it while the pointer is over the frame.
+
 To add one, write a scene in `src/viz/`, register it in `src/viz/index.js`,
 and set that key as a project's `viz`. Visitors who prefer reduced motion see a
-single still frame.
+single still frame, and nothing responds to the pointer.
 
 ## Deploying to GitHub Pages
 

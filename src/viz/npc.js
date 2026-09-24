@@ -4,7 +4,8 @@ import { SOFT, SOLID, between, mix, out } from './kit.js';
 // line is classified, lore is retrieved, the model drafts a reply, and a
 // validator checks it; every other exchange the draft fails and loops back
 // through repair first. The reply is spoken, and of the two effects it
-// proposes, one is kept and the other struck out.
+// proposes, one is kept and the other struck out. A tap starts a new exchange
+// at once, and the pointer over a stage names it.
 
 const T = 5.6; // seconds per exchange
 const REPAIR = 1.2; // extra time on an exchange that is repaired
@@ -17,12 +18,17 @@ export default {
     ['validate', 70, 68, 'center'],
     ['effects', 85, 8, 'center'],
   ],
+  hint: 'tap to talk',
   still: T + 3.3,
-  draw(k, t) {
+  init: () => ({ shift: 0 }),
+  draw(k, t, io) {
     const { w, h, u, s } = k;
+    const mem = io.state;
     k.clear();
-    const n = Math.floor(t / T);
-    const q = t % T;
+    // a tap: the next exchange starts now
+    if (io.taps.length) mem.shift = t - (Math.floor((t - mem.shift) / T) + 1) * T;
+    const n = Math.floor((t - mem.shift) / T);
+    const q = (t - mem.shift) % T;
     const repaired = n % 2 === 1;
     const d = repaired ? REPAIR : 0;
     const y = Math.round(h * 0.5);
@@ -123,5 +129,21 @@ export default {
     }
     if (repaired && q >= 3.7 && q < 3.95) k.item(mix(xg, xv, out((q - 3.7) / 0.25)), y, false, u * 3);
 
+
+    // the pointer over a stage names it (lore and validate carry labels already)
+    if (io.inside) {
+      const names = [
+        [xp, 'player', s * 0.8, 1],
+        [xi, 'intent', st / 2, 1],
+        [xg, 'draft', st / 2, -1],
+        [xr, 'reply', s * 0.8, 1],
+      ];
+      for (const [x, name, half, below] of names) {
+        if (Math.abs(io.x - x) > Math.max(half, st * 0.8) || Math.abs(io.y - y) > s * 1.2) continue;
+        const gap = u * 3;
+        const ty = below > 0 ? y + half + gap : y - half - gap - 7 * k.dot;
+        k.text(name, x, Math.round(ty), k.dot, 'center');
+      }
+    }
   },
 };
