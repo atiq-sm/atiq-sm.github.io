@@ -1,3 +1,5 @@
+import { GLYPHS, RAMP } from './font.js';
+
 // Drawing kit bound to one frame of a Stage: its size, a line unit `u`, a
 // station size `s`, and primitives snapped to whole pixels so edges never
 // shimmer against the dither. Everything is drawn in grays: SOLID is full
@@ -52,5 +54,52 @@ export function kit(stage) {
     item: (x, y, hollow = false, size = s, v = SOLID) =>
       hollow ? frame(x - size / 2, y - size / 2, size, size, v) : fill(x - size / 2, y - size / 2, size, size, v),
     station: (x, y, ww, hh, on) => (on ? fill(x - ww / 2, y - hh / 2, ww, hh) : frame(x - ww / 2, y - hh / 2, ww, hh)),
+    // The dot-matrix font's size for this frame: one dot per pixel on a card,
+    // two on a wide stage, so a glyph is always about the same share of it.
+    dot: Math.max(1, Math.round(w / 440)),
+    // A line of text in the dot-matrix font, from (x, y) at its top; `align`
+    // 'center' or 'right' anchors it there instead. Returns its width.
+    text(str, x, y, g = this.dot, align = 'left', v = SOLID) {
+      const width = str.length * 6 * g - g;
+      const x0 = r(align === 'center' ? x - width / 2 : align === 'right' ? x - width : x);
+      [...str.toUpperCase()].forEach((ch, i) => {
+        for (const [dx, dy] of GLYPHS[ch] ?? []) fill(x0 + (i * 6 + dx) * g, y + dy * g, g, g, v);
+      });
+      return width;
+    },
+    // Fill the frame with a grid of glyphs. `shade(x, y, col, row)` is called at
+    // each cell's center and returns a brightness in [0, 1] (drawn as a symbol
+    // from the shading ramp), a character to draw as is, or 0 for nothing.
+    // It writes pixels directly, so draw anything else on top afterwards.
+    ascii(shade, g = this.dot) {
+      const cw = 6 * g;
+      const ch = 8 * g;
+      const cols = Math.floor(w / cw);
+      const rows = Math.floor(h / ch);
+      const ox = Math.floor((w - cols * cw) / 2);
+      const oy = Math.floor((h - rows * ch) / 2);
+      if (stage.asciiImage?.width !== w || stage.asciiImage.height !== h) stage.asciiImage = c.createImageData(w, h);
+      const px = new Uint32Array(stage.asciiImage.data.buffer);
+      px.fill(0xff000000);
+      const top = RAMP.length - 1;
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const x0 = ox + col * cw;
+          const y0 = oy + row * ch;
+          const v = shade(x0 + cw / 2, y0 + ch / 2, col, row);
+          if (!v) continue;
+          const dots = GLYPHS[typeof v === 'string' ? v : RAMP[Math.min(top, Math.round(v * top))]];
+          if (!dots) continue;
+          for (const [dx, dy] of dots) {
+            for (let b = 0; b < g; b++) {
+              const i = (y0 + dy * g + b) * w + x0 + dx * g;
+              px.fill(0xffffffff, i, i + g);
+            }
+          }
+        }
+      }
+      c.putImageData(stage.asciiImage, 0, 0);
+      return { cols, rows, cw, ch, ox, oy };
+    },
   };
 }
