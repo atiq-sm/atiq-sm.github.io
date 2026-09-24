@@ -12,7 +12,7 @@ export default function About() {
 
   return (
     <>
-      <Hero title="Research-led engineering." />
+      <Hero title="Software that meets the physical world." />
 
       <Section className="prose">
         <div className="beats">

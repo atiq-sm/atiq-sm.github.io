@@ -96,7 +96,7 @@ canvas {
   display: block;
 }
 
-/* the filter hides entries with the attribute; no component rule may undo it */
+/* no component rule may undo the attribute */
 [hidden] {
   display: none !important;
 }
@@ -496,7 +496,7 @@ a.tag:hover {
   margin-top: 10px;
 }
 
-/* four across only while "<100 ms" still fits a quarter of the page */
+/* four across only while "16/16" still fits a quarter of the page */
 @media (max-width: 1000px) {
   .stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -630,9 +630,7 @@ section.block {
   border-top: 1px solid var(--line);
 }
 
-.seam + section.block,
-.filter + section.block,
-.filter + section.block[hidden] + section.block {
+.seam + section.block {
   border-top: 0;
 }
 
@@ -671,50 +669,23 @@ section.block {
   color: var(--accent);
 }
 
-/* ------------------------------------------------------------------ featured work: five across, illustration over text */
+/* ------------------------------------------------------------------ featured work: four across, illustration over text */
 
 .featured {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--s4) var(--gap);
 }
 
-/* two across, with the lead project over the full width (its illustration
-   beside its text) so none is left alone */
 @media (max-width: 1199px) {
   .featured {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .featured > :first-child {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(3, auto) 1fr;
-    column-gap: var(--gap);
-  }
-
-  .featured > :first-child > .viz {
-    grid-row: 1 / -1;
-    margin-bottom: 0;
-  }
-
-  .featured > :first-child > :not(.viz) {
-    grid-column: 2;
   }
 }
 
 @media (max-width: 639px) {
   .featured {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .featured > :first-child {
-    display: block;
-  }
-
-  .featured > :first-child > .viz {
-    margin-bottom: var(--s2);
   }
 }
 
@@ -785,62 +756,7 @@ section.block {
   transform: translate(-50%, -50%);
 }
 
-/* ------------------------------------------------------------------ work: the filter bar, the case study, every entry */
-
-/* a full-width bar under the seam, like the reference's legend; it scrolls
-   sideways on a phone rather than wrapping the segments */
-.filter {
-  display: flex;
-  align-items: center;
-  min-height: 52px;
-  padding: 10px var(--gut);
-  overflow-x: auto;
-  border-bottom: 1px solid var(--line);
-  scrollbar-width: none;
-}
-
-.filter::-webkit-scrollbar {
-  display: none;
-}
-
-.seg {
-  display: inline-flex;
-  flex: none;
-  border: 1px solid var(--line);
-}
-
-.seg button {
-  border: 0;
-  color: var(--dim);
-  white-space: nowrap;
-}
-
-.seg button + button {
-  border-left: 1px solid var(--line);
-}
-
-.seg button.on {
-  background: var(--accent);
-  color: var(--ink);
-}
-
-.seg button.on:hover {
-  color: var(--ink);
-}
-
-.count {
-  margin-left: 8px;
-  color: var(--faint);
-}
-
-.seg button.on .count {
-  color: inherit;
-  opacity: 0.6;
-}
-
-.filter + section.block {
-  padding-top: calc(var(--s3) + var(--s2));
-}
+/* ------------------------------------------------------------------ work: the case studies, every entry, the archive */
 
 .case .aside .repo-meta {
   margin-top: -12px;
@@ -913,10 +829,6 @@ section.block {
   margin-bottom: 10px;
 }
 
-.num {
-  color: var(--accent);
-}
-
 .entry .description {
   max-width: 62ch;
   margin: 0 0 var(--s2);
@@ -929,6 +841,57 @@ section.block {
 
 .entry .row {
   margin-top: var(--s2);
+}
+
+/* the archive: one line each, title, what it is, and its link */
+.archive {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.archive li {
+  display: grid;
+  grid-template-columns: 4fr 7fr 1fr;
+  gap: var(--s1) var(--gap);
+  align-items: baseline;
+  padding: var(--s2) 0;
+  border-top: 1px solid var(--line);
+}
+
+.archive li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.archive h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.archive p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--dim);
+}
+
+.archive a {
+  justify-self: end;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.archive a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .archive li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .archive a {
+    justify-self: start;
+  }
 }
 
 /* ------------------------------------------------------------------ about: three beats, then credits */
