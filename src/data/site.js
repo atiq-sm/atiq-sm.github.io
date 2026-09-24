@@ -50,9 +50,8 @@ export const site = {
     {
       kind: 'work',
       company: 'CardAlive',
-      // TODO: the start month, and a location if there is one.
       role: 'Co-founder & CTO',
-      period: '2026 — Present',
+      period: 'May 2026 — Present',
       bullets: [
         'Building a mixed-reality tabletop creature battler for Meta Quest 3 in Unity 6 and C#: scan printed QR cards and two 3D monsters appear on your real table for a turn-based duel.',
         'Built the card-to-fight pipeline: passthrough camera frames, multi-QR decoding with ZXing.NET, and placement by raycasting against the MRUK depth mesh so creatures stand on the real table.',
@@ -92,7 +91,6 @@ export const site = {
       role: 'Senior Analyst — Data Analytics & Engineering',
       period: 'June 2022 — Dec. 2023',
       location: 'Bangalore, India',
-      // TODO: the reliability and response-time gains can come back once they have their context.
       bullets: [
         'Built ETL pipelines for 2M+ records a day from distributed microservices, with data-quality monitoring and lineage tracking.',
         'Built the monitoring around them: real-time dashboards, alerting, and CI/CD test automation.',
@@ -121,7 +119,6 @@ export const site = {
   ],
   links: {
     github: 'https://github.com/atiq-sm',
-    // TODO: confirm your LinkedIn handle and swap in the real URL.
     linkedin: 'https://www.linkedin.com/in/atiq-sm/',
     email: 'mohammed.ati@northeastern.edu',
     source: 'https://github.com/atiq-sm/atiq-sm.github.io',
@@ -292,8 +289,7 @@ export const site = {
           ['Role', 'Co-founder & CTO; I build the game'],
           ['Platform', 'Meta Quest 3 and 3S, plus a desktop build with a webcam'],
           ['Engine', 'Unity 6, C#, OpenXR, Meta XR Core and MRUK'],
-          // TODO: the start month.
-          ['When', '2026 — present'],
+          ['When', 'May 2026 — present'],
           ['Status', 'In development, with a waitlist at cardalive.xyz'],
         ],
         sections: [
