@@ -894,6 +894,241 @@ section.block {
   }
 }
 
+/* ------------------------------------------------------------------ a story page: footage, facts, the story, results */
+
+.story-lead .label {
+  margin-bottom: var(--s2);
+}
+
+.shot {
+  margin: 0;
+}
+
+.shot img,
+.shot video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.shot figcaption {
+  margin-top: 10px;
+}
+
+/* the facts in a row under the footage, each over a hairline */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--s3) var(--gap);
+  margin: var(--s4) 0 0;
+}
+
+.facts > div {
+  padding-top: var(--s2);
+  border-top: 1px solid var(--line);
+}
+
+.facts dt {
+  margin-bottom: 6px;
+  color: var(--faint);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+/* a story section: its heading on five columns, its text beside it on six,
+   its figures across the page */
+.block.story {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+}
+
+.block.story > .head {
+  display: block;
+  grid-column: 1 / span 5;
+  margin: 0;
+}
+
+.story-body {
+  grid-column: 7 / span 6;
+  max-width: 62ch;
+}
+
+.block.story > .shots {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1000px) {
+  .block.story > .head,
+  .story-body {
+    grid-column: 1 / -1;
+  }
+
+  .block.story > .head {
+    margin-bottom: var(--s3);
+  }
+}
+
+.story-body p:last-child {
+  margin-bottom: 0;
+}
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s3) var(--gap);
+  align-items: start;
+  margin-top: var(--s4);
+}
+
+@media (max-width: 720px) {
+  .shots {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* the results: large lime numbers over their meaning, three across */
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s4) var(--gap);
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .results {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.results > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  padding-left: 12px;
+  border-left: 1px solid var(--rule);
+}
+
+.results dd {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: clamp(30px, 3.6vw, 56px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.results dt {
+  max-width: 34ch;
+  font: var(--fs-body) / 1.5 var(--sans);
+  color: var(--dim);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* the study chart: two bars per domain, mixed reality in lime, the comparison dithered */
+.chart {
+  margin: var(--s5) 0 0;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 var(--s2);
+  font: var(--fs-mono) / 1.6 var(--mono);
+  color: var(--dim);
+}
+
+.key {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.legend .key.b {
+  margin-left: var(--s2);
+}
+
+.key.a,
+.bar.a {
+  background: var(--accent);
+}
+
+.key.b,
+.bar.b {
+  color: var(--dim);
+  background: var(--dither-50);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+  grid-template-rows: auto auto;
+  column-gap: var(--gap);
+  row-gap: 3px;
+  padding: 10px 32px 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.bar-label {
+  grid-row: 1 / 3;
+  align-self: center;
+  color: var(--dim);
+}
+
+.bar {
+  position: relative;
+  grid-column: 2;
+  display: block;
+  height: 14px;
+  min-width: 2px;
+}
+
+.bar b {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 8px);
+  transform: translateY(-50%);
+  font: var(--fs-mono) / 1 var(--mono);
+  font-weight: 400;
+  color: var(--text);
+}
+
+.chart figcaption {
+  margin-top: var(--s2);
+}
+
+@media (max-width: 720px) {
+  .bar-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bar-label {
+    grid-row: auto;
+  }
+
+  .bar {
+    grid-column: 1;
+  }
+}
+
+.story-next {
+  margin-top: var(--s4);
+}
+
 /* ------------------------------------------------------------------ about: three beats, then credits */
 
 .prose p {

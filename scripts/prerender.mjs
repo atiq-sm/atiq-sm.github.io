@@ -4,7 +4,14 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { render, PAGES } from '../dist-ssr/entry-server.js';
 
 const SLOT = '<div id="root"><!--app--></div>';
-const FILES = ['index.html', 'work/index.html', 'about/index.html', '404.html'];
+const FILES = [
+  'index.html',
+  'work/index.html',
+  'work/mr-pocus/index.html',
+  'work/cardalive/index.html',
+  'about/index.html',
+  '404.html',
+];
 
 for (const file of FILES) {
   const url = new URL(`../dist/${file}`, import.meta.url);
