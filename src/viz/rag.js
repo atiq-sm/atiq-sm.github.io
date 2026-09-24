@@ -3,6 +3,8 @@ import { SOFT, SOLID, between, mix, out, rnd } from './kit.js';
 // Voice RAG: one spoken question at a time. The waveform becomes a query,
 // Whisper transcribes it, retrieval lights three of eight chunks and the
 // reranker keeps two, the local model thinks, and an answer is spoken back.
+// The pointer over the microphone speaks into it, the waveform following how
+// fast it moves, and a tap asks a new question at once.
 
 const T = 4.2; // seconds per question
 
@@ -14,27 +16,38 @@ export default {
     ['retrieve', 42, 6],
     ['ollama', 64, 72],
   ],
+  hint: 'tap to ask',
   still: 2.2,
-  draw(k, t) {
+  init: () => ({ shift: 0, px: null, py: null, voice: 0 }),
+  draw(k, t, io) {
     const { w, h, u, s } = k;
+    const mem = io.state;
     k.clear();
-    const n = Math.floor(t / T);
-    const q = t % T;
+    if (io.taps.length) mem.shift = t - (Math.floor((t - mem.shift) / T) + 1) * T;
+    const n = Math.floor((t - mem.shift) / T);
+    const q = (t - mem.shift) % T;
     const y = Math.round(h * 0.5);
     const [x0, x1, x2, x3, x4] = [0.1, 0.3, 0.52, 0.74, 0.9].map((f) => w * f);
 
     // the wire: a regular dash, since a dithered hairline breaks up unevenly
     for (let x = x0; x < x4; x += u * 3) k.fill(x, y - u / 2, u, u);
 
+    // the pointer near the microphone is a voice: louder the faster it moves
+    const near = io.inside && Math.abs(io.x - x0) < w * 0.12 && Math.abs(io.y - y) < h * 0.3;
+    const speed = near && mem.px !== null && io.dt ? Math.hypot(io.x - mem.px, io.y - mem.py) / (io.dt * w) : 0;
+    [mem.px, mem.py] = io.inside ? [io.x, io.y] : [null, null];
+    mem.voice += ((near ? 0.35 + Math.min(0.65, speed * 0.4) : 0) - mem.voice) * Math.min(1, io.dt * 10);
+
     // voice in and voice out: a few bars that move while someone speaks
-    const wave = (x, active) => {
+    const wave = (x, active, level = 1) => {
       for (let i = -3; i <= 3; i++) {
-        const amp = active ? 0.3 + 0.7 * Math.abs(Math.sin(t * 9 + i * 1.3 + n)) : 0.08;
+        const amp = active ? (0.3 + 0.7 * Math.abs(Math.sin(t * 9 + i * 1.3 + n))) * level : 0.08;
         const bh = Math.max(u, s * 1.6 * amp);
         k.fill(x + i * u * 2.5 - u * 0.75, y - bh / 2, u * 1.5, bh);
       }
     };
-    wave(x0, q < 0.7);
+    if (q < 0.7) wave(x0, true);
+    else wave(x0, mem.voice > 0.05, Math.max(0.25, mem.voice));
     wave(x4, q > 3.55);
 
     // whisper and the model: stations that light while they work

@@ -4,7 +4,9 @@ import { SOLID, between, clamp, mix, out, rnd } from './kit.js';
 // the table and scans it; a slime is summoned onto it, facing a goblin already
 // standing on its own card, and the two trade turns until the goblin falls.
 // Then the slime sinks back into its card, the goblin is summoned again, and
-// the loop starts over from an empty card.
+// the loop starts over from an empty card. The view follows the pointer as a
+// headset would, near things shifting more than far ones; a monster under the
+// pointer is bracketed, and a tap on it makes it jump.
 
 const SLIME = [
   '....#####....',
@@ -64,26 +66,41 @@ export default {
     ['scan', 30, 8, 'center'],
     ['turn-based', 70, 8, 'center'],
   ],
+  hint: 'tap a monster',
   still: TURNS + 2 * TURN + HIT + 0.1,
-  draw(k, t) {
+  init: () => ({ look: 0, hops: { slime: -9, goblin: -9 }, bursts: [] }),
+  draw(k, t, io) {
     const { c, w, h, u, s } = k;
+    const st = io.state;
+    const clock = t;
     k.clear();
     t %= LOOP;
     const cell = Math.max(2, Math.round(h / 40));
 
+    // where the head is turned: toward the pointer, or drifting a little
+    const aim = io.inside ? (io.x / w - 0.5) * 2 : Math.sin(clock * 0.4) * 0.25;
+    st.look += (aim - st.look) * Math.min(1, io.dt * 4);
+    const shift = (depth) => Math.round(-st.look * w * (0.015 + 0.05 * depth));
+
     // the tabletop in perspective, a faint dither between its two edges
     const far = Math.round(h * 0.5);
     const near = Math.round(h * 0.9);
+    const [fx, nx] = [shift(0), shift(1)];
     c.fillStyle = k.gray(40);
     c.beginPath();
-    c.moveTo(w * 0.16, far);
-    c.lineTo(w * 0.84, far);
-    c.lineTo(w * 0.97, near);
-    c.lineTo(w * 0.03, near);
+    c.moveTo(w * 0.16 + fx, far);
+    c.lineTo(w * 0.84 + fx, far);
+    c.lineTo(w * 0.97 + nx, near);
+    c.lineTo(w * 0.03 + nx, near);
     c.closePath();
     c.fill();
-    k.fill(w * 0.16, far, w * 0.68, u);
-    k.fill(w * 0.03, near, w * 0.94, u);
+    k.fill(w * 0.16 + fx, far, w * 0.68, u);
+    k.fill(w * 0.03 + nx, near, w * 0.94, u);
+
+    // everything on the cards sits at their depth, and moves with it
+    const dx = shift((h * 0.72 - far) / (near - far));
+    c.save();
+    c.translate(dx, 0);
 
     // the two cards, flat on the table, each with its scannable code
     const cw = Math.round(w * 0.2);
@@ -105,6 +122,27 @@ export default {
     card(goblinX, 53);
     // monsters stand at the back of their cards, clear of the code
     const bottom = cy - ch / 2 + cell;
+
+    // a tap on a monster makes it jump, and the pointer over one brackets it
+    const bounds = (name) => {
+      const map = name === 'slime' ? SLIME : GOBLIN;
+      const x = name === 'slime' ? slimeX : goblinX;
+      return [x - (map[0].length * cell) / 2, bottom - map.length * cell, map[0].length * cell, map.length * cell];
+    };
+    const under = (px, py) =>
+      ['slime', 'goblin'].find((name) => {
+        const [x, y, bw, bh] = bounds(name);
+        return px - dx >= x - cell * 2 && px - dx <= x + bw + cell * 2 && py >= y - cell * 3 && py <= y + bh + cell;
+      });
+    for (const tap of io.taps) {
+      const name = under(tap.x, tap.y);
+      if (name) st.hops[name] = clock;
+      st.bursts = [...st.bursts.filter((b) => clock - b.t < 0.4), { x: tap.x, y: tap.y, t: clock }];
+    }
+    const hop = (name) => {
+      const p = (clock - st.hops[name]) / 0.45;
+      return p >= 0 && p < 1 ? Math.round(Math.sin(p * Math.PI) * cell * 6) : 0;
+    };
 
     // where the fight stands: which turn, how far into it, and what has landed
     const turn = t >= TURNS && t < KO ? Math.floor((t - TURNS) / TURN) : -1;
@@ -153,7 +191,7 @@ export default {
     if (slimeUp) {
       const rows =
         t < SPAWN[1] ? Math.ceil(out(spawn) * SLIME.length) : t >= RESET ? Math.round((1 - respawn) * SLIME.length) : SLIME.length;
-      sprite(k, SLIME, slimeX + (struck === 'slime' ? shake : 0), bottom, cell, { rows, hollow: struck === 'slime' });
+      sprite(k, SLIME, slimeX + (struck === 'slime' ? shake : 0), bottom - hop('slime'), cell, { rows, hollow: struck === 'slime' });
     }
 
     // the goblin: lunges on its turns, scatters when it falls, is summoned again
@@ -175,7 +213,7 @@ export default {
       );
     } else {
       const rows = t >= RESET ? Math.ceil(out(respawn) * GOBLIN.length) : GOBLIN.length;
-      sprite(k, GOBLIN, gx, bottom, cell, { rows, hollow: struck === 'goblin' });
+      sprite(k, GOBLIN, gx, bottom - hop('goblin'), cell, { rows, hollow: struck === 'goblin' });
     }
 
     // the slime's move: a blade of water flies across and bursts on the goblin
@@ -202,9 +240,9 @@ export default {
     }
 
     // health bars over each monster, and a marker over whoever is acting
-    const bar = (cx, rows, hp, acting) => {
+    const bar = (cx, rows, hp, acting, lift) => {
       const bw = cell * 3;
-      const y = bottom - rows * cell - cell * 3;
+      const y = bottom - lift - rows * cell - cell * 3;
       const x0 = cx - (HP * (bw + u) - u) / 2;
       for (let i = 0; i < HP; i++) {
         if (i < hp) k.fill(x0 + i * (bw + u), y, bw, cell);
@@ -212,9 +250,34 @@ export default {
       }
       if (acting) for (let i = 0; i < 3; i++) k.fill(cx - cell * (1.5 - i / 2), y - cell * (4 - i), cell * (3 - i), cell, SOLID);
     };
-    if (slimeUp && t >= SPAWN[1] && t < RESET) bar(slimeX, SLIME.length, slimeHp, turn % 2 === 0 && q < HIT + 0.5);
+    if (slimeUp && t >= SPAWN[1] && t < RESET) bar(slimeX, SLIME.length, slimeHp, turn % 2 === 0 && q < HIT + 0.5, hop('slime'));
     if (!fallen && respawn < 1 && (t < KO || respawn > 0.6)) {
-      bar(goblinX, GOBLIN.length, t >= RESET ? HP : goblinHp, turn % 2 === 1 && q < HIT + 0.5);
+      bar(goblinX, GOBLIN.length, t >= RESET ? HP : goblinHp, turn % 2 === 1 && q < HIT + 0.5, hop('goblin'));
+    }
+    c.restore();
+
+    // brackets lock onto the monster under the pointer
+    const target = io.inside ? under(io.x, io.y) : null;
+    if (target) {
+      const [x0, y0, bw, bh] = bounds(target);
+      const pad = cell * 2;
+      const [l, r, top, bot] = [x0 + dx - pad, x0 + dx + bw + pad, y0 - hop(target) - pad, y0 - hop(target) + bh + pad];
+      const arm = Math.round(s * 0.4);
+      for (const [x, y, sx, sy] of [[l, top, 1, 1], [r, top, -1, 1], [r, bot, -1, -1], [l, bot, 1, -1]]) {
+        k.fill(sx > 0 ? x : x - arm, sy > 0 ? y : y - u, arm, u);
+        k.fill(sx > 0 ? x : x - u, sy > 0 ? y : y - arm, u, arm);
+      }
+    }
+
+    // a ring of sparks wherever a tap lands
+    for (const b of st.bursts) {
+      const p = (clock - b.t) / 0.4;
+      if (p < 0 || p >= 1) continue;
+      const r = mix(s * 0.2, s * 1.1, out(p));
+      for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2;
+        k.item(b.x + Math.cos(a) * r, b.y + Math.sin(a) * r * 0.8, false, u * (p < 0.5 ? 2 : 1.5));
+      }
     }
   },
 };

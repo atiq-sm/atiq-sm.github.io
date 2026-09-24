@@ -11,6 +11,10 @@ const ASPECT = { card: 420 / 262, large: 16 / 9 };
 // so the pre-rendered page already has the box (a CSS dither fills it); the
 // canvas is set up after hydration, animates only while it is on screen, and
 // shows a single still frame to anyone who prefers reduced motion.
+//
+// While it animates, a scene can also be played with: it is handed the pointer
+// (in scene pixels), the taps since its last frame, and a state object of its
+// own, created by `scene.init()` for each frame on the page.
 export default function ProjectViz({ name, large = false }) {
   const box = useRef(null);
   const canvas = useRef(null);
@@ -26,9 +30,12 @@ export default function ProjectViz({ name, large = false }) {
     const stage = new Stage(canvas.current, tones);
     let t = scene.still;
     let size = '';
+    const io = { x: 0, y: 0, inside: false, taps: [], dt: 0, state: scene.init?.() ?? {} };
     const paint = () => {
       if (!stage.w) return;
-      scene.draw(kit(stage), t);
+      scene.draw(kit(stage), t, io);
+      io.dt = 0;
+      io.taps.length = 0;
       stage.present();
     };
 
@@ -59,24 +66,52 @@ export default function ProjectViz({ name, large = false }) {
       return () => ro.disconnect();
     }
 
+    // the pointer, in scene pixels; a tap is a click, so scrolling past on a
+    // phone never counts as one
+    const at = (e) => {
+      const rect = el.getBoundingClientRect();
+      return [((e.clientX - rect.left) / rect.width) * stage.w, ((e.clientY - rect.top) / rect.height) * stage.h];
+    };
+    const move = (e) => {
+      [io.x, io.y] = at(e);
+      io.inside = true;
+    };
+    const leave = () => {
+      io.inside = false;
+    };
+    const click = (e) => {
+      const [x, y] = at(e);
+      io.taps.push({ x, y });
+      [io.x, io.y] = [x, y];
+    };
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerleave', leave);
+    el.addEventListener('click', click);
+    if (scene.hint) el.dataset.hint = scene.hint;
+
     const subscriber = {
       visible: false,
       tick(step) {
         t += step;
+        io.dt = step;
         paint();
       },
     };
-    const io = new IntersectionObserver(([entry]) => {
+    const seen = new IntersectionObserver(([entry]) => {
       subscriber.visible = entry.isIntersecting;
       if (subscriber.visible) wake();
     });
-    io.observe(el);
+    seen.observe(el);
     const unsubscribe = subscribe(subscriber);
 
     return () => {
       ro.disconnect();
-      io.disconnect();
+      seen.disconnect();
       unsubscribe();
+      el.removeEventListener('pointermove', move);
+      el.removeEventListener('pointerleave', leave);
+      el.removeEventListener('click', click);
+      delete el.dataset.hint;
     };
   }, [scene]);
 

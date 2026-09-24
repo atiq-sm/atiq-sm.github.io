@@ -783,6 +783,41 @@ section.block {
   transform: translate(-50%, -50%);
 }
 
+/* a frame that can be played with says how, while the pointer is over it
+   (always, faintly, where there is no hover) */
+.viz[data-hint] {
+  cursor: crosshair;
+}
+
+.viz[data-hint]::after {
+  content: attr(data-hint);
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  z-index: 1;
+  padding: 2px 4px;
+  background: var(--ink);
+  color: var(--accent);
+  font: var(--fs-mono) / 1 var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.viz[data-hint]:hover::after {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .viz[data-hint]::after {
+    opacity: 0.75;
+  }
+}
+
 /* ------------------------------------------------------------------ work: the case studies, every entry, the archive */
 
 .case .aside .repo-meta {
