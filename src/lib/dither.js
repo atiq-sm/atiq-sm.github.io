@@ -6,7 +6,7 @@
 // as an ordered (Bayer 8x8) dither between two tones: black becomes the first
 // tone, white the second, and every gray a pattern of both.
 
-const BAYER8 = [
+export const BAYER8 = [
    0, 32,  8, 40,  2, 34, 10, 42,   48, 16, 56, 24, 50, 18, 58, 26,
   12, 44,  4, 36, 14, 46,  6, 38,   60, 28, 52, 20, 62, 30, 54, 22,
    3, 35, 11, 43,  1, 33,  9, 41,   51, 19, 59, 27, 49, 17, 57, 25,
