@@ -31,3 +31,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## Fonts and icons in the profile README art
+
+The generated art in `profile/assets/` draws its text as outlines of
+[Inter](https://github.com/rsms/inter) by Rasmus Andersson and
+[JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) by JetBrains,
+both under the SIL Open Font License 1.1 (read from the `@fontsource` packages).
+Its tool icons are from [Simple Icons](https://simpleicons.org/), released
+under CC0 1.0; the brands they depict belong to their owners.

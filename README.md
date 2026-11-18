@@ -155,6 +155,40 @@ npm run generate:og
 The SVGs use generic font families; the script maps them to the fonts the site
 itself uses on your OS.
 
+## The GitHub profile README
+
+`profile/` is the content of the profile repository,
+[atiq-sm/atiq-sm](https://github.com/atiq-sm/atiq-sm), whose `README.md` GitHub
+shows at the top of https://github.com/atiq-sm. It is generated, like the
+share image, and committed:
+
+```bash
+npm run generate:readme               # rebuilds profile/
+npm run generate:readme -- ../atiq-sm # or writes straight into a clone of the profile repo
+```
+
+Copy `profile/` into the profile repo after regenerating. The words come from
+`src/data/site.js` and the art from the site's own scenes, so edit those, not
+the output:
+
+- `scripts/readme/build.mjs`: the README itself, and which art goes where
+- `scripts/readme/art.mjs`: the vector panels (hero, section head, tools,
+  the MR POCUS chart, the closing band, the link buttons), with a few CSS
+  animations, which GitHub plays inside an SVG image
+- `scripts/readme/tiles.mjs`: the project tiles, each a card from the site
+  with its `src/viz` scene playing, as a GIF; and how long each scene loops
+- `scripts/readme/fetch.mjs` and `headset.mjs`: the `neofetch` card and its
+  ASCII headset, a scene written with the site's kit
+- `scripts/readme/stage.mjs`: runs a scene in Node (a stand-in for the canvas
+  calls the scenes make, then the site's Bayer dither); `compose.mjs` and
+  `gif.mjs` turn a card and its scenes into a GIF that stores only what
+  changes between frames
+- `scripts/readme/type.mjs`: text as outlines in Inter and JetBrains Mono,
+  since an image on GitHub can't load fonts
+
+GitHub strips scripts and styles from a README, so everything that moves is
+an image, and everything clickable is a link around one.
+
 ## Design
 
 The design language (lime on ink, the 12-column grid, the type scale, the
@@ -167,6 +201,7 @@ collapse, used under the MIT License. See `THIRD_PARTY_NOTICES.md`.
 ```
 index.html, work/, about/, 404.html   # one HTML entry per page
 public/media/         # footage and stills for the story pages
+profile/              # the GitHub profile README and its art (generated)
 src/
   data/site.js        # content — edit here
   pages/              # Home, Work, Story, About, NotFound
@@ -181,4 +216,5 @@ src/
 scripts/
   prerender.mjs       # writes pre-rendered markup into dist/
   generate-og.mjs     # rasterizes the share image and touch icon
+  readme/             # builds profile/ from site.js and the scenes
 ```
